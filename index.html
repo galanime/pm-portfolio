@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>张恒玮 · AI 产品经理</title>
+  <meta name="description" content="张恒玮 — 北邮硕士，AI 产品方向，擅长需求拆解、AI 工作流设计、人机协同流程与产品 Demo 快速验证。" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header class="sidebar">
+      <div class="sidebar-inner">
+        <h1 class="brand">张恒玮</h1>
+        <p class="brand-sub">AI 产品经理</p>
+        <p class="brand-desc">北邮硕士 · 2027 届<br />需求拆解 / AI 工作流 / 产品 Demo</p>
+
+        <nav aria-label="主导航">
+          <ul class="nav-list">
+            <li><a href="#about">01. <span>About</span></a></li>
+            <li><a href="#cases">02. <span>产品案例</span></a></li>
+            <li><a href="#skills">03. <span>Skills</span></a></li>
+            <li><a href="#contact">04. <span>Contact</span></a></li>
+          </ul>
+        </nav>
+
+        <div class="social-links">
+          <a href="https://github.com/galanime" target="_blank" rel="noopener" aria-label="GitHub">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.87-1.54-3.87-1.54-.52-1.33-1.27-1.69-1.27-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.69 1.25 3.34.96.1-.75.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.94 10.94 0 0 1 5.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.59.23 2.76.11 3.05.73.81 1.18 1.84 1.18 3.1 0 4.42-2.69 5.39-5.25 5.68.41.35.78 1.04.78 2.1 0 1.52-.01 2.74-.01 3.11 0 .31.21.68.8.56C20.21 21.39 23.5 17.08 23.5 12 23.5 5.73 18.27.5 12 .5z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="hero">
+        <h2 class="hero-title">你好，我是张恒玮</h2>
+        <p class="hero-sub">一名会做 Demo 的 AI 产品经理</p>
+        <p class="hero-desc">
+          北京邮电大学硕士 · 2027 届 · base 北京。<br />
+          我相信好的 AI 产品不是"堆模型能力"，而是把复杂的 AI 能力拆成用户能懂、能用、敢用的工作流。<br />
+          我擅长需求拆解、人机协同流程设计与质量评估体系搭建，并且能自己用代码把产品 Demo 跑出来验证想法。
+        </p>
+        <div class="hero-actions">
+          <a class="btn" href="resume-pm.pdf">下载产品简历 PDF</a>
+          <a class="btn btn-primary" href="https://github.com/galanime" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </section>
+
+      <section id="about" class="section">
+        <h3 class="section-title">01. 我怎么做 AI 产品</h3>
+        <div class="section-body">
+          <p><strong>从用户痛点出发，而不是从技术出发。</strong>每个案例我都先回答"用户是谁、卡在哪、为什么现有方案不行"，再设计 AI 工作流去解决它。</p>
+          <p><strong>把 AI 黑盒变成可解释的流程。</strong>我设计的系统都有明确的"感知 → 决策 → 人工卡点 → 执行 → 反馈"链路，让非技术干系人也能看懂 AI 在做什么、为什么这么做。</p>
+          <p><strong>用数据和指标驱动迭代。</strong>我为每个产品定义核心体验指标（完成率、重试率、时延、人工介入率），并搭建评估面板持续验证。</p>
+          <p><strong>能自己动手验证。</strong>我不是只会写 PRD 的 PM——我能用 Python / React 把产品 Demo 跑起来，0 成本验证可行性，再决定要不要投入研发。</p>
+        </div>
+      </section>
+
+      <section id="cases" class="section">
+        <h3 class="section-title">02. 产品案例</h3>
+
+        <!-- Case 1 -->
+        <article class="project-card">
+          <div class="project-content">
+            <h4 class="project-name">AI 短视频创作工具</h4>
+            <p class="project-tagline">让中小商家"填个表单"就能产出短视频脚本与发布包</p>
+
+            <div class="pm-block">
+              <p class="pm-label">痛点</p>
+              <p class="pm-text">中小商家想做短视频获客，但不会写脚本、不懂剪辑，外包一条成本高、周期长，导致大量商家放弃视频渠道。</p>
+            </div>
+            <div class="pm-block">
+              <p class="pm-label">我的方案</p>
+              <p class="pm-text">把短视频生产拆解为 <strong>brief → 脚本 → 分镜 → 发布包</strong> 的标准化工作流，每一步都是可配置、可预览、可回退的节点；用多智能体分别负责文案、视觉与结构，把"懂剪辑"的门槛降到"填表单"。</p>
+            </div>
+            <div class="pm-block">
+              <p class="pm-label">关键设计决策</p>
+              <ul class="project-bullets">
+                <li>➤ <strong>质量门禁</strong>：引入 Prompt 质量评分 + 人工审批前置，避免 AI 生成低质/违规内容直接流出</li>
+                <li>➤ <strong>双版本策略</strong>：Lite 版用于 0 成本演示与获客，Pro 版面向付费商用，能力边界清晰</li>
+                <li>➤ <strong>降级与成本控制</strong>：Mock Provider + 降级链路，无付费 API 也能完整跑通，验证期 0 成本</li>
+              </ul>
+            </div>
+            <div class="pm-block">
+              <p class="pm-label">验证与成果</p>
+              <p class="pm-text">独立完成可交互 Demo 并跑通完整链路，沉淀界面教程与 Prompt 知识库作为可交付资料；用 29 个自动化测试保证迭代不回退。</p>
+            </div>
+            <ul class="tech-tags">
+              <li class="skill-tag">需求拆解</li>
+              <li class="skill-tag">AI 工作流</li>
+              <li class="skill-tag">质量门禁</li>
+              <li class="skill-tag">双版本策略</li>
+              <li class="skill-tag">AIGC</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Case 2 -->
+        <article class="project-card">
+          <div class="project-content">
+            <h4 class="project-name">AI 运营助手（人机协同）</h4>
+            <p class="project-tagline">让自媒体运营"回复不熬夜、话术不踩雷"</p>
+
+            <div class="pm-block">
+              <p class="pm-label">痛点</p>
+              <p class="pm-text">自媒体账号私信/评论量大，人工回复不及时导致粉丝流失；但全自动回复又容易触发平台风控或话术违规，账号风险高。</p>
+            </div>
+            <div class="pm-block">
+              <p class="pm-label">我的方案</p>
+              <p class="pm-text">设计 <strong>感知 → 分诊 → 拟人化改写 → 人工审批 → 执行 → 学习同步</strong> 的人机协同流程：低风险常规问题自动处理，高风险/引流类话术强制进入人工卡点，兼顾效率与账号安全。</p>
+            </div>
+            <div class="pm-block">
+              <p class="pm-label">关键设计决策</p>
+              <ul class="project-bullets">
+                <li>➤ <strong>风险前置拦截</strong>：规则引擎先行分诊，高风险动作一律人工确认，把"会不会封号"的不确定性收敛掉</li>
+                <li>➤ <strong>可解释性</strong>：每条自动回复都带决策 route trace，可解释、可回放、可审计，满足平台合规</li>
+                <li>➤ <strong>运营可自维护</strong>：话术库（Notion）与策略解耦，非技术运营同学也能自己维护规则，降低协作成本</li>
+              </ul>
+            </div>
+            <div class="pm-block">
+              <p class="pm-label">验证与成果</p>
+              <p class="pm-text">用待审队列 + 审计日志的 Web 面板承载运营日常，形成完整人机协同闭环；10 个自动化测试覆盖核心分诊与风控逻辑。</p>
+            </div>
+            <ul class="tech-tags">
+              <li class="skill-tag">人机协同</li>
+              <li class="skill-tag">风控设计</li>
+              <li class="skill-tag">审批闭环</li>
+              <li class="skill-tag">可解释性</li>
+              <li class="skill-tag">运营效率</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Case 3 -->
+        <article class="project-card">
+          <div class="project-content">
+            <h4 class="project-name">AI 生活助手</h4>
+            <p class="project-tagline">回答"AI 助手到底帮没帮上忙"——用指标定义好体验</p>
+
+            <div class="pm-block">
+              <p class="pm-label">痛点</p>
+              <p class="pm-text">很多 AI 助手"看起来能聊，实际上办不成事"，用户说不清它哪里不好，团队也无法判断该优化哪里——缺少一套可量化的体验评估方法。</p>
+            </div>
+            <div class="pm-block">
+              <p class="pm-label">我的方案</p>
+              <p class="pm-text">设计 <strong>意图识别 → 任务拆解 → 工具调用 → 结果聚合</strong> 的完整用户旅程，并定义完成率、重试率、端到端时延、人工评分等核心体验指标，把"好不好用"变成可测量的数据。</p>
+            </div>
+            <div class="pm-block">
+              <p class="pm-label">关键设计决策</p>
+              <ul class="project-bullets">
+                <li>➤ <strong>核心指标定义</strong>：以"任务是否真正完成"为北极星，而非"是否回复了用户"</li>
+                <li>➤ <strong>评估面板</strong>：搭建评估仪表盘 + 人工评分入口，用数据驱动迭代意图识别与工具选择策略</li>
+                <li>➤ <strong>过程可视化</strong>：任务 DAG + Trace + 会话回放，让非技术干系人看懂 AI 决策链路，降低验收成本</li>
+              </ul>
+            </div>
+            <div class="pm-block">
+              <p class="pm-label">验证与成果</p>
+              <p class="pm-text">105 个自动化测试保障体验不回退；评估体系可直接迁移到任何"AI 助手/Agent"类产品的体验度量。</p>
+            </div>
+            <ul class="tech-tags">
+              <li class="skill-tag">核心指标</li>
+              <li class="skill-tag">评估体系</li>
+              <li class="skill-tag">数据分析</li>
+              <li class="skill-tag">AI Agent</li>
+              <li class="skill-tag">体验设计</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Case 4 -->
+        <article class="project-card">
+          <div class="project-content">
+            <h4 class="project-name">考研题库学习产品</h4>
+            <p class="project-tagline">微信小程序刷题 + 答疑工单的多角色流程设计</p>
+
+            <div class="pm-block">
+              <p class="pm-label">痛点</p>
+              <p class="pm-text">考研学生在碎片时间刷题需求强，但传统题库产品重、答疑链路长，学生提问后得不到及时反馈，学习闭环断裂。</p>
+            </div>
+            <div class="pm-block">
+              <p class="pm-label">我的方案</p>
+              <p class="pm-text">设计 <strong>学员刷题 / 教师答疑 / 管理员工单</strong> 三角色闭环：学员端刷题 + 错题 + 讨论 + 模拟考试，教师端答疑工作台，管理员工单升级与分配，用小程序承载轻量化学习场景。</p>
+            </div>
+            <div class="pm-block">
+              <p class="pm-label">关键设计决策</p>
+              <ul class="project-bullets">
+                <li>➤ <strong>多角色流程</strong>：12 个页面打通三类角色，答疑可升级、可追踪，形成完整学习服务闭环</li>
+                <li>➤ <strong>轻量化验证</strong>：本地数据驱动，无需后端即可演示完整流程，快速验证产品逻辑</li>
+              </ul>
+            </div>
+            <ul class="tech-tags">
+              <li class="skill-tag">多角色流程</li>
+              <li class="skill-tag">教育产品</li>
+              <li class="skill-tag">小程序</li>
+              <li class="skill-tag">学习闭环</li>
+            </ul>
+          </div>
+        </article>
+      </section>
+
+      <section id="skills" class="section">
+        <h3 class="section-title">03. 能力矩阵</h3>
+        <div class="skill-block">
+          <p class="skill-group-label">产品核心</p>
+          <ul class="skill-tags">
+            <li class="skill-tag">需求拆解与用户场景分析</li>
+            <li class="skill-tag">PRD / 用户故事 / 验收标准</li>
+            <li class="skill-tag">AI 工作流设计</li>
+            <li class="skill-tag">人机协同流程</li>
+            <li class="skill-tag">核心指标定义</li>
+            <li class="skill-tag">产品数据分析</li>
+          </ul>
+        </div>
+        <div class="skill-block">
+          <p class="skill-group-label">AI 认知</p>
+          <ul class="skill-tags">
+            <li class="skill-tag">LLM 能力边界</li>
+            <li class="skill-tag">Prompt 工程</li>
+            <li class="skill-tag">AI Agent / 多智能体</li>
+            <li class="skill-tag">RAG 应用</li>
+            <li class="skill-tag">AI 质量评估</li>
+          </ul>
+        </div>
+        <div class="skill-block">
+          <p class="skill-group-label">产品与协作工具</p>
+          <ul class="skill-tags">
+            <li class="skill-tag">Figma / Axure / Xmind</li>
+            <li class="skill-tag">SQL / pandas</li>
+            <li class="skill-tag">Notion / 飞书</li>
+            <li class="skill-tag">可独立搭建可交互 Demo（React）</li>
+          </ul>
+        </div>
+        <div class="skill-block">
+          <p class="skill-group-label">技术理解力（评估实现成本）</p>
+          <ul class="skill-tags">
+            <li class="skill-tag">Python / FastAPI</li>
+            <li class="skill-tag">工作流状态机</li>
+            <li class="skill-tag">审批 / 风控 / 可观测</li>
+            <li class="skill-tag">小程序 / Web 前端</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="contact" class="section">
+        <h3 class="section-title">04. Get In Touch</h3>
+        <div class="contact-body">
+          <p>如果你团队在做 AI 原生产品、AIGC 工具、AI Agent 平台或 AI 应用产品化方向，欢迎通过 GitHub 联系我。</p>
+          <p>产品视角简历 PDF 可点击下方按钮获取；工程视角作品集见 <a class="inline-link" href="https://galanime.github.io/portfolio/" target="_blank" rel="noopener">galanime.github.io/portfolio</a>。</p>
+          <a class="btn btn-big" href="resume-pm.pdf">下载产品简历 PDF</a>
+          &nbsp;
+          <a class="btn btn-big" href="https://github.com/galanime" target="_blank" rel="noopener">GitHub @galanime</a>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <p class="footer-text">
+          张恒玮 · AI 产品经理 · <a href="https://github.com/galanime" target="_blank" rel="noopener">github.com/galanime</a>
+        </p>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>
