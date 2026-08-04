@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 460" width="960" height="460" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif">
+<rect width="960" height="460" fill="#0d1117" rx="10"/>
+<text x="32" y="44" fill="#e6edf3" font-size="21" font-weight="700">灰虎考研题库 · 三角色闭环与增长链路</text>
+<text x="32" y="68" fill="#8b949e" font-size="13">已上线产品｜覆盖 5 所院校约 5000 名当届学员</text>
+<line x1="32" y1="84" x2="928" y2="84" stroke="#30363d" stroke-width="1"/>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#30363d"/></marker></defs>
+<rect x="32" y="104" width="280" height="108" rx="8" fill="#161b22" stroke="#6366f1" stroke-width="1.5"/>
+<text x="172.0" y="127" fill="#e6edf3" font-size="13.5" font-weight="600" text-anchor="middle">学员端</text>
+<text x="172.0" y="146" fill="#8b949e" font-size="11" text-anchor="middle">刷题 / 错题本 / 模拟考试</text>
+<text x="172.0" y="161" fill="#8b949e" font-size="11" text-anchor="middle">题目提问 → 生成答疑工单</text>
+<text x="172.0" y="176" fill="#8b949e" font-size="11" text-anchor="middle">订单与 VIP</text>
+<rect x="340" y="104" width="280" height="108" rx="8" fill="#161b22" stroke="#6366f1" stroke-width="1.5"/>
+<text x="480.0" y="127" fill="#e6edf3" font-size="13.5" font-weight="600" text-anchor="middle">教师端</text>
+<text x="480.0" y="146" fill="#8b949e" font-size="11" text-anchor="middle">答疑工作台</text>
+<text x="480.0" y="161" fill="#8b949e" font-size="11" text-anchor="middle">历史答案复用</text>
+<text x="480.0" y="176" fill="#8b949e" font-size="11" text-anchor="middle">按知识点归集问题</text>
+<rect x="648" y="104" width="280" height="108" rx="8" fill="#161b22" stroke="#6366f1" stroke-width="1.5"/>
+<text x="788.0" y="127" fill="#e6edf3" font-size="13.5" font-weight="600" text-anchor="middle">管理员端</text>
+<text x="788.0" y="146" fill="#8b949e" font-size="11" text-anchor="middle">工单升级与分配</text>
+<text x="788.0" y="161" fill="#8b949e" font-size="11" text-anchor="middle">内容与题库维护</text>
+<text x="788.0" y="176" fill="#8b949e" font-size="11" text-anchor="middle">运营数据查看</text>
+<line x1="312" y1="158" x2="338" y2="158" stroke="#30363d" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="620" y1="158" x2="646" y2="158" stroke="#30363d" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="788" y1="230" x2="172" y2="230" stroke="#30363d" stroke-width="1.5" marker-end="url(#a)" stroke-dasharray="4 3"/>
+<text x="480.0" y="224.0" fill="#8b949e" font-size="10.5" text-anchor="middle">答疑结果回流学员端</text>
+<rect x="32" y="254" width="430" height="92" rx="8" fill="#161b22" stroke="#10b981" stroke-width="1.5"/>
+<text x="247.0" y="277" fill="#e6edf3" font-size="13.5" font-weight="600" text-anchor="middle">「题目 — 知识点 — 问答」关联知识体系</text>
+<text x="247.0" y="296" fill="#8b949e" font-size="11" text-anchor="middle">提问沉淀为可复用答案，降低重复答疑</text>
+<text x="247.0" y="311" fill="#8b949e" font-size="11" text-anchor="middle">依据甲方与真实使用反馈完成 2–3 轮迭代</text>
+<rect x="498" y="254" width="430" height="92" rx="8" fill="#161b22" stroke="#f59e0b" stroke-width="1.5"/>
+<text x="713.0" y="277" fill="#e6edf3" font-size="13.5" font-weight="600" text-anchor="middle">增长链路（小红书 / B 站 / 抖音）</text>
+<text x="713.0" y="296" fill="#8b949e" font-size="11" text-anchor="middle">内容获客 → AI 客服承接咨询 → 小程序转化</text>
+<text x="713.0" y="311" fill="#8b949e" font-size="11" text-anchor="middle">半年全平台涨粉 2 万，为小程序持续导流</text>
+<rect x="32" y="380" width="211.60000000000002" height="22" rx="11" fill="none" stroke="#10b981" stroke-width="1"/>
+<text x="137.8" y="395" fill="#10b981" font-size="11" text-anchor="middle">覆盖 5 所院校 · 约 5000 名当届学员</text>
+<rect x="251.60000000000002" y="380" width="145.59999999999997" height="22" rx="11" fill="none" stroke="#6366f1" stroke-width="1"/>
+<text x="324.4" y="395" fill="#6366f1" font-size="11" text-anchor="middle">PRD + Figma 高保真原型</text>
+<rect x="405.2" y="380" width="181.35000000000002" height="22" rx="11" fill="none" stroke="#f59e0b" stroke-width="1"/>
+<text x="495.875" y="395" fill="#f59e0b" font-size="11" text-anchor="middle">AI 辅助开发使原型周期缩短 90%</text>
+<text x="32" y="444" fill="#8b949e" font-size="10.5">公开仓库 huihu-kaoyan-miniapp-public 为脱敏演示版，不含真实登录 / 支付 / 用户数据</text>
+</svg>

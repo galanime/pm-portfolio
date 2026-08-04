@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 434" width="960" height="434" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif">
+<rect width="960" height="434" fill="#0d1117" rx="10"/>
+<text x="32" y="44" fill="#e6edf3" font-size="21" font-weight="700">内容生产工作流 · n8n 编排</text>
+<text x="32" y="68" fill="#8b949e" font-size="13">AI 生成 + 人工把关：单篇 4 小时 → 15 分钟，周更 1 篇 → 7 篇</text>
+<line x1="32" y1="84" x2="928" y2="84" stroke="#30363d" stroke-width="1"/>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#30363d"/></marker></defs>
+<rect x="32" y="108" width="200" height="74" rx="8" fill="#161b22" stroke="#6366f1" stroke-width="1.5"/>
+<text x="132.0" y="131" fill="#e6edf3" font-size="13.5" font-weight="600" text-anchor="middle">选题评分</text>
+<text x="132.0" y="150" fill="#8b949e" font-size="11" text-anchor="middle">打分排序</text>
+<line x1="232" y1="145" x2="258" y2="145" stroke="#30363d" stroke-width="1.5" marker-end="url(#a)"/>
+<rect x="258" y="108" width="200" height="74" rx="8" fill="#161b22" stroke="#6366f1" stroke-width="1.5"/>
+<text x="358.0" y="131" fill="#e6edf3" font-size="13.5" font-weight="600" text-anchor="middle">文案 Prompt</text>
+<text x="358.0" y="150" fill="#8b949e" font-size="11" text-anchor="middle">生成初稿</text>
+<line x1="458" y1="145" x2="484" y2="145" stroke="#30363d" stroke-width="1.5" marker-end="url(#a)"/>
+<rect x="484" y="108" width="200" height="74" rx="8" fill="#161b22" stroke="#6366f1" stroke-width="1.5"/>
+<text x="584.0" y="131" fill="#e6edf3" font-size="13.5" font-weight="600" text-anchor="middle">视觉 Prompt</text>
+<text x="584.0" y="150" fill="#8b949e" font-size="11" text-anchor="middle">配图指令</text>
+<line x1="684" y1="145" x2="710" y2="145" stroke="#30363d" stroke-width="1.5" marker-end="url(#a)"/>
+<rect x="710" y="108" width="200" height="74" rx="8" fill="#161b22" stroke="#6366f1" stroke-width="1.5"/>
+<text x="810.0" y="131" fill="#e6edf3" font-size="13.5" font-weight="600" text-anchor="middle">格式校验</text>
+<text x="810.0" y="150" fill="#8b949e" font-size="11" text-anchor="middle">结构/字数</text>
+<rect x="262" y="224" width="436" height="80" rx="8" fill="#161b22" stroke="#f85149" stroke-width="1.5"/>
+<text x="480.0" y="247" fill="#e6edf3" font-size="13.5" font-weight="600" text-anchor="middle">人工审核卡点</text>
+<text x="480.0" y="266" fill="#8b949e" font-size="11" text-anchor="middle">未通过审核不进入发布，AI 只做生成不做终审</text>
+<line x1="480" y1="182" x2="480" y2="222" stroke="#30363d" stroke-width="1.5" marker-end="url(#a)"/>
+<rect x="32" y="330" width="436" height="66" rx="8" fill="#161b22" stroke="#f59e0b" stroke-width="1.5"/>
+<text x="250.0" y="353" fill="#e6edf3" font-size="13.5" font-weight="600" text-anchor="middle">失败兜底</text>
+<text x="250.0" y="372" fill="#8b949e" font-size="11" text-anchor="middle">任一节点失败回落上一稳定产物，不中断整条流水线</text>
+<rect x="498" y="330" width="430" height="66" rx="8" fill="#161b22" stroke="#10b981" stroke-width="1.5"/>
+<text x="713.0" y="353" fill="#e6edf3" font-size="13.5" font-weight="600" text-anchor="middle">优化指标</text>
+<text x="713.0" y="372" fill="#8b949e" font-size="11" text-anchor="middle">内容产能 · 发布频次 · 人工修改量</text>
+<line x1="370" y1="304" x2="250" y2="328" stroke="#30363d" stroke-width="1.5" marker-end="url(#a)" stroke-dasharray="4 3"/>
+<line x1="590" y1="304" x2="713" y2="328" stroke="#30363d" stroke-width="1.5" marker-end="url(#a)" stroke-dasharray="4 3"/>
+<text x="32" y="418" fill="#8b949e" font-size="10.5">在 1 个自媒体账号试点；n8n 是实际使用过的编排工具（非 LangChain）</text>
+</svg>

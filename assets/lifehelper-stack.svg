@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 450" width="960" height="450" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif">
+<rect width="960" height="450" fill="#0d1117" rx="10"/>
+<text x="32" y="44" fill="#e6edf3" font-size="21" font-weight="700">LifeHelper · 全栈 Agent 工作台</text>
+<text x="32" y="68" fill="#8b949e" font-size="13">意图 → 拆解 → 工具调用 → 聚合，全链路可观测、可回放、可评估</text>
+<line x1="32" y1="84" x2="928" y2="84" stroke="#30363d" stroke-width="1"/>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#30363d"/></marker></defs>
+<rect x="32" y="104" width="206" height="74" rx="8" fill="#161b22" stroke="#6366f1" stroke-width="1.5"/>
+<text x="135.0" y="127" fill="#e6edf3" font-size="13.5" font-weight="600" text-anchor="middle">意图分析</text>
+<text x="135.0" y="146" fill="#8b949e" font-size="11" text-anchor="middle">Intent</text>
+<line x1="238" y1="141" x2="260" y2="141" stroke="#30363d" stroke-width="1.5" marker-end="url(#a)"/>
+<rect x="262" y="104" width="206" height="74" rx="8" fill="#161b22" stroke="#6366f1" stroke-width="1.5"/>
+<text x="365.0" y="127" fill="#e6edf3" font-size="13.5" font-weight="600" text-anchor="middle">任务拆解</text>
+<text x="365.0" y="146" fill="#8b949e" font-size="11" text-anchor="middle">Decompose</text>
+<line x1="468" y1="141" x2="490" y2="141" stroke="#30363d" stroke-width="1.5" marker-end="url(#a)"/>
+<rect x="492" y="104" width="206" height="74" rx="8" fill="#161b22" stroke="#6366f1" stroke-width="1.5"/>
+<text x="595.0" y="127" fill="#e6edf3" font-size="13.5" font-weight="600" text-anchor="middle">工具执行</text>
+<text x="595.0" y="146" fill="#8b949e" font-size="11" text-anchor="middle">Tool Call</text>
+<line x1="698" y1="141" x2="720" y2="141" stroke="#30363d" stroke-width="1.5" marker-end="url(#a)"/>
+<rect x="722" y="104" width="206" height="74" rx="8" fill="#161b22" stroke="#6366f1" stroke-width="1.5"/>
+<text x="825.0" y="127" fill="#e6edf3" font-size="13.5" font-weight="600" text-anchor="middle">结果聚合</text>
+<text x="825.0" y="146" fill="#8b949e" font-size="11" text-anchor="middle">Aggregate</text>
+<rect x="32" y="210" width="436" height="78" rx="8" fill="#161b22" stroke="#f59e0b" stroke-width="1.5"/>
+<text x="250.0" y="233" fill="#e6edf3" font-size="13.5" font-weight="600" text-anchor="middle">失败重试 + 会话快照</text>
+<text x="250.0" y="252" fill="#8b949e" font-size="11" text-anchor="middle">Celery Worker / Beat 异步执行</text>
+<line x1="250" y1="178" x2="250" y2="208" stroke="#30363d" stroke-width="1.5" marker-end="url(#a)"/>
+<rect x="492" y="210" width="436" height="78" rx="8" fill="#161b22" stroke="#10b981" stroke-width="1.5"/>
+<text x="710.0" y="233" fill="#e6edf3" font-size="13.5" font-weight="600" text-anchor="middle">前端可观测三件套</text>
+<text x="710.0" y="252" fill="#8b949e" font-size="11" text-anchor="middle">TracePanel · ExecutionGraphPanel（任务 DAG）· EvaluationPanel</text>
+<line x1="710" y1="178" x2="710" y2="208" stroke="#30363d" stroke-width="1.5" marker-end="url(#a)"/>
+<rect x="32" y="316" width="896" height="82" rx="8" fill="#161b22" stroke="#6366f1" stroke-width="1.5"/>
+<text x="480.0" y="339" fill="#e6edf3" font-size="13.5" font-weight="600" text-anchor="middle">Docker Compose 五服务</text>
+<text x="480.0" y="358" fill="#8b949e" font-size="11" text-anchor="middle">API（FastAPI）· Worker（Celery）· Beat（定时）· Redis（队列/缓存）· PostgreSQL（持久化）</text>
+<text x="480.0" y="373" fill="#8b949e" font-size="11" text-anchor="middle">后端 112 个自动化测试（README 里写的 105 是旧数）</text>
+<text x="32" y="434" fill="#8b949e" font-size="10.5">口径来源：仓库内 def test_ 计数 = 112 · docker-compose 服务清单 · 前端 Panel 组件文件</text>
+</svg>
