@@ -1,62 +1,78 @@
 # 张恒玮｜AI 产品经理作品集
 
-这是面向 AI 产品经理 / 技术产品经理岗位的静态案例页。它以“真实证据优先”为核心：先说明运行状态和验证边界，再呈现用户问题、方案取舍与交付结果。
+面向 2027 届 AI 产品经理 / 技术产品经理岗位的静态“证据板”。页面在一个桌面视口内并排呈现七个项目的运行、脱敏复现或 Mock 证据、交付结果与边界说明；不以流程图替代运行证据，也不把截图范围以外的事实夸大为现场证明。
 
 在线地址：[galanime.github.io/pm-portfolio](https://galanime.github.io/pm-portfolio/)
 
-## 页面结构
+## 当前结构
 
-- 概览：岗位定位、已确认成果与最新简历。
-- 真实运行证据：公开脱敏 Demo、当前本地运行、确定性 Demo 与 mock 运行均有明确徽标和说明。
-- 核心案例：闲鱼 AI 客服 Agent、星使智算 Demo2、CareerPilot、灰虎研题教育；案例统一按“用户与问题 → 方案与 AI 边界 → 落地结果”表达。
-- 补充案例：LifeHelper、Chart Agent、Short Video Studio Lite。
-- AI 产品工作流：从场景到交付迭代的八步闭环。
+- 无侧边栏的页眉：姓名、岗位定位、电话、邮箱、GitHub、`resume-pm.pdf` 下载与浏览器打印入口。
+- 三项已确认成果摘要：企业内部独立交付 5 个软件产品 / 工具、ToB 教育产品约 5000 名学员覆盖、闲鱼 AI 客服 4 家商家使用且 1 家购买后续迭代服务。
+- 4 列 × 2 行的七项目证据板：闲鱼 AI 客服 Agent、星使智算 Demo2、CareerPilot、北京灰虎研题教育、LifeHelper、Chart Agent、Short Video Studio Lite。
+- 移动端收为单列；浏览器打印输出为 A4 横版单页，仍保留所有七张项目卡。
 
-## 真实性与边界
+## 截图、状态与公开边界
 
-- 所有文案仅采用已确认的简历事实；未写入本次岗位材料之外的经历或未经确认的测试数。
-- `assets/*.jpg` 是本次整理后的最终截图。图片可点击打开原图，caption 会明确说明“公开脱敏本地 Demo / 当前本地运行 / 确定性演示 / mock 运行”等状态。
-- CareerPilot 中的百度岗位输入只用于本地 Fake Provider 确定性演示，不是百度官方评分或真实招聘结论。
-- SVG 文件仅是结构示意，不被表述为产品真实运行截图。
+| 项目 | 截图资产 | 截图状态 / 边界 |
+| --- | --- | --- |
+| 闲鱼 AI 客服 Agent | `assets/xianyu-agent-runtime.jpg` | 公开脱敏 Demo；不连接真实账号、ADB 或外部日历。 |
+| 星使智算 Demo2 | `assets/demo2-molecular-lab.jpg` | 当前本地运行；证明教学页面及 3D / SchNet 链路，不外推为训练结论。 |
+| CareerPilot | `assets/careerpilot-baidu-run.jpg` | 确定性演示；百度 JD 只是输入，Fake Provider 不代表百度官方结论。 |
+| 北京灰虎研题教育 | `assets/huihu-student-entry-runtime.png` | 公开 Mock 小程序在微信开发者工具中的运行截图；使用本地 Mock 数据，不发起支付或上传信息。 |
+| LifeHelper | `assets/lifehelper-runtime.jpg` | 本地 mock 运行；评分只对应本地样本。 |
+| Chart Agent | `assets/chart-agent-public-runtime.jpg` | 公开脱敏复现；**非内部源码 / 真实数据，不证明内部版本 UI**。内部项目本身已交付，无公开源码。 |
+| Short Video Studio Lite | `assets/short-video-review-ready.png` | 公开 Lite Mock；截图证明 Review Ready 与 approval pending 门禁，不含付费 Provider、自动发布或客户数据。 |
+
+页面中的 SVG 如存在，仅可作为结构示意，不能表述为产品运行截图。
 
 ## 文件说明
 
 ```text
-index.html       页面结构和全部文案
-style.css        设计 tokens、响应式布局、可访问性状态
-resume-pm.pdf    当前确认的 2027 校招 AI 产品经理简历
-assets/*.jpg     六张最终运行证据图
-assets/*.svg     流程结构示意图
+index.html                         页面结构和事实文案
+style.css                          一屏网格、响应式和 A4 横版打印样式
+resume-pm.pdf                      当前确认的 2027 校招 AI 产品经理简历
+assets/*-runtime.*                 各项目的运行、脱敏、复现或 Mock 页面截图
+demos/chart-agent-public/          可运行的 Chart Agent 公开脱敏复现页
 ```
 
-## 本地预览
+## 本地预览与打印
 
 ```bash
 python3 -m http.server 8000
 # 打开 http://127.0.0.1:8000
 ```
 
-页面不依赖外部字体、JavaScript 或构建步骤。交互仅使用原生锚点、链接和 `details`，同时包含跳过链接、明显的键盘焦点样式、44px 触控目标与 `prefers-reduced-motion` 支持。
+桌面端推荐在 1440 × 900 或更大视口检查一屏布局。点击“打印证据板”并选择横向（页面 CSS 已通过 `@page` 指定 A4 landscape）即可保存单页 PDF。页面无构建步骤与外部字体依赖。
 
-## 发布前检查
+## 静态检查
 
 ```bash
 git diff --check
 python3 - <<'PY'
 from pathlib import Path
-from bs4 import BeautifulSoup
+from html.parser import HTMLParser
+
+class Assets(HTMLParser):
+    def __init__(self):
+        super().__init__(); self.images = []; self.alts = []; self.classes = []
+    def handle_starttag(self, tag, attrs):
+        values = dict(attrs)
+        if tag == 'img':
+            self.images.append(values.get('src'))
+            self.alts.append(values.get('alt'))
+        if 'class' in values:
+            self.classes.append(values['class'])
 
 root = Path('.')
-soup = BeautifulSoup((root / 'index.html').read_text(), 'html.parser')
-for node in soup.select('[src], link[href]'):
-    ref = node.get('src') or node.get('href')
-    if ref and not ref.startswith(('http:', 'https:', 'mailto:', 'tel:', '#')):
-        assert (root / ref).exists(), ref
-for image in soup.select('img'):
-    assert image.get('alt'), image.get('src')
-print('local asset links and alt text: OK')
+parser = Assets()
+parser.feed((root / 'index.html').read_text())
+assert len(parser.images) == 7, parser.images
+assert all(parser.alts), 'every runtime screenshot needs alt text'
+assert not any('sidebar' in value for value in parser.classes), 'sidebar must not return'
+assert '@media print' in (root / 'style.css').read_text()
+assert '@page { size: A4 landscape' in (root / 'style.css').read_text()
+print('seven cards, alt text, no sidebar and print CSS: OK')
 PY
-file assets/*.jpg resume-pm.pdf
 ```
 
-部署 GitHub Pages 时使用 `main` 分支的仓库根目录；无需生成额外构建产物。
+发布前还需核对全部截图路径、1440 × 900 桌面端无溢出、390px 移动端无横向滚动，以及生成的 A4 PDF 页数。

@@ -1,0 +1,621 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Chart Agent 公开脱敏复现 Demo</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #07111f;
+        --bg-soft: #0e1b30;
+        --panel: rgba(15, 26, 46, 0.9);
+        --panel-strong: rgba(10, 20, 36, 0.96);
+        --line: rgba(130, 165, 255, 0.2);
+        --text: #eef4ff;
+        --muted: #9db0cf;
+        --accent: #6ea8ff;
+        --accent-2: #7af0c8;
+        --warn: #ffb75a;
+        --danger: #ff8c8c;
+        --shadow: 0 18px 48px rgba(0, 0, 0, 0.28);
+        font-family: "SF Pro Display", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        color: var(--text);
+        background:
+          radial-gradient(circle at top left, rgba(110, 168, 255, 0.22), transparent 28%),
+          radial-gradient(circle at bottom right, rgba(122, 240, 200, 0.16), transparent 24%),
+          linear-gradient(160deg, #08101d 0%, #0c1730 55%, #07101d 100%);
+      }
+
+      .shell {
+        width: min(1360px, calc(100vw - 48px));
+        margin: 20px auto;
+        display: grid;
+        gap: 18px;
+      }
+
+      .banner,
+      .panel {
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        background: var(--panel);
+        box-shadow: var(--shadow);
+      }
+
+      .banner {
+        padding: 20px 24px;
+        display: grid;
+        grid-template-columns: minmax(0, 1.4fr) minmax(360px, 0.9fr);
+        gap: 18px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 12px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        color: var(--accent);
+        background: rgba(110, 168, 255, 0.1);
+      }
+
+      h1 {
+        margin: 14px 0 12px;
+        font-size: 34px;
+        line-height: 1.12;
+      }
+
+      .banner p,
+      .meta-strip,
+      .note,
+      .list,
+      .audit-list,
+      pre,
+      .mini-label,
+      .badge,
+      .footer-line {
+        color: var(--muted);
+      }
+
+      .banner p {
+        margin: 0;
+        font-size: 15px;
+        line-height: 1.7;
+      }
+
+      .meta-strip {
+        margin-top: 14px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 14px;
+        font-size: 13px;
+      }
+
+      .meta-strip span {
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .banner-side {
+        padding: 18px;
+        border-radius: 20px;
+        background: var(--panel-strong);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .controls {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 14px;
+      }
+
+      button {
+        appearance: none;
+        border: 0;
+        border-radius: 999px;
+        padding: 11px 16px;
+        font: inherit;
+        font-weight: 700;
+        cursor: pointer;
+        transition: transform 140ms ease, box-shadow 140ms ease, background 140ms ease;
+      }
+
+      button:hover,
+      button:focus-visible {
+        transform: translateY(-1px);
+      }
+
+      button:focus-visible {
+        outline: 2px solid #dce8ff;
+        outline-offset: 3px;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #8bb7ff, #5e97ff);
+        color: #07101d;
+        box-shadow: 0 10px 22px rgba(94, 151, 255, 0.28);
+      }
+
+      .btn-secondary {
+        background: rgba(255, 255, 255, 0.06);
+        color: var(--text);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .board {
+        display: grid;
+        grid-template-columns: 1.12fr 0.88fr;
+        gap: 18px;
+      }
+
+      .panel {
+        padding: 18px;
+      }
+
+      .panel-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 14px;
+      }
+
+      .panel h2,
+      .panel h3 {
+        margin: 0;
+      }
+
+      .panel h2 {
+        font-size: 19px;
+      }
+
+      .panel h3 {
+        font-size: 16px;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 5px 10px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 700;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .badge.ok {
+        color: var(--accent-2);
+        background: rgba(122, 240, 200, 0.09);
+      }
+
+      .badge.warn {
+        color: var(--warn);
+        background: rgba(255, 183, 90, 0.09);
+      }
+
+      .flow {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 10px;
+        margin-bottom: 16px;
+      }
+
+      .step {
+        min-height: 112px;
+        padding: 14px;
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .step strong,
+      .mini-title {
+        display: block;
+        margin-bottom: 8px;
+        color: var(--text);
+      }
+
+      .mini-label {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 12px;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      .list {
+        margin: 0;
+        padding-left: 18px;
+        font-size: 13px;
+        line-height: 1.7;
+      }
+
+      .panel-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+        gap: 14px;
+      }
+
+      pre,
+      .audit-card,
+      .svg-stage {
+        margin: 0;
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        background: rgba(4, 10, 20, 0.6);
+      }
+
+      pre {
+        padding: 14px;
+        font-size: 12px;
+        line-height: 1.55;
+        overflow: hidden;
+      }
+
+      .svg-stage {
+        padding: 16px;
+      }
+
+      .audit-card {
+        padding: 14px;
+      }
+
+      .audit-list {
+        margin: 0;
+        padding-left: 18px;
+        font-size: 13px;
+        line-height: 1.65;
+      }
+
+      .status-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 14px;
+      }
+
+      .status-card {
+        padding: 14px;
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .status-value {
+        margin-top: 10px;
+        font-size: 22px;
+        font-weight: 800;
+        color: var(--text);
+      }
+
+      .status-value.bad {
+        color: var(--danger);
+      }
+
+      .status-value.good {
+        color: var(--accent-2);
+      }
+
+      .footer-line {
+        text-align: center;
+        font-size: 12px;
+        padding-bottom: 8px;
+      }
+
+      .visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      @media (max-width: 1100px) {
+        .banner,
+        .board,
+        .panel-grid,
+        .flow,
+        .status-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <section class="banner">
+        <div>
+          <span class="eyebrow">Chart Agent 公开脱敏复现 Demo</span>
+          <h1>示例参考 PDF 与示例 CSV 的语义匹配、拒绝机制、人工确认、SVG 预览和审计清单</h1>
+          <p>
+            本页只复现公开可讲的产品逻辑：示例图题提取、列语义匹配、低置信度拒绝、人工批准后出图、
+            以及 manifest / match_report / selected_reference 三份审计产物。它不是内部源码、不是客户数据、
+            也不证明内部版本 UI。
+          </p>
+          <div class="meta-strip">
+            <span>完全示例数据</span>
+            <span>不含公司名 / 芯片型号 / 内部路径</span>
+            <span>端侧约束优先于“猜测生成”</span>
+          </div>
+        </div>
+        <aside class="banner-side" aria-label="状态切换说明">
+          <div class="mini-label">交互说明</div>
+          <h2 style="margin: 0 0 10px;">两种运行态</h2>
+          <p class="note">
+            默认展示“低置信度拒绝”。点击按钮后，切到“人工确认通过后生成 SVG 与审计清单”的运行态。
+          </p>
+          <div class="controls">
+            <button class="btn-primary" type="button" data-mode="approved">切到人工批准后生成</button>
+            <button class="btn-secondary" type="button" data-mode="rejected">切回低置信度拒绝</button>
+          </div>
+        </aside>
+      </section>
+
+      <section class="board">
+        <div class="panel">
+          <div class="panel-head">
+            <h2>链路总览</h2>
+            <span class="badge warn" id="pipeline-badge">低置信度拒绝中</span>
+          </div>
+          <div class="flow" aria-label="Chart Agent 工作流">
+            <article class="step">
+              <span class="mini-label">Step 1</span>
+              <strong>示例参考 PDF</strong>
+              <div class="list">figure-request.pdf<br />图题：Offset vs Temperature</div>
+            </article>
+            <article class="step">
+              <span class="mini-label">Step 2</span>
+              <strong>示例 CSV</strong>
+              <div class="list">lab_measurements.csv<br />temp_c / offset_uv / sample_id</div>
+            </article>
+            <article class="step">
+              <span class="mini-label">Step 3</span>
+              <strong>语义匹配</strong>
+              <div class="list">图题字段 vs CSV 列<br />相似度阈值检查</div>
+            </article>
+            <article class="step">
+              <span class="mini-label">Step 4</span>
+              <strong id="decision-title">低置信度拒绝</strong>
+              <div class="list" id="decision-copy">置信度 0.63，低于 0.85 阈值，停止自动出图。</div>
+            </article>
+            <article class="step">
+              <span class="mini-label">Step 5</span>
+              <strong>产物与审计</strong>
+              <div class="list">selected_reference.json<br />match_report.json<br />manifest.json</div>
+            </article>
+          </div>
+
+          <div class="panel-grid">
+            <pre id="pdf-snippet" aria-label="示例参考 PDF 摘要"></pre>
+            <pre id="csv-snippet" aria-label="示例 CSV 摘要"></pre>
+          </div>
+
+          <div class="status-grid" aria-label="状态指标">
+            <article class="status-card">
+              <div class="mini-label">语义匹配置信度</div>
+              <div class="status-value" id="confidence-value">0.63</div>
+            </article>
+            <article class="status-card">
+              <div class="mini-label">策略结果</div>
+              <div class="status-value bad" id="policy-value">拒绝生成</div>
+            </article>
+            <article class="status-card">
+              <div class="mini-label">人工门禁</div>
+              <div class="status-value" id="review-value">待确认</div>
+            </article>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head">
+            <h2>SVG 预览与审计清单</h2>
+            <span class="badge ok" id="artifact-badge">审计链路可回放</span>
+          </div>
+          <div class="svg-stage" aria-labelledby="svg-title">
+            <div class="mini-label">Output Preview</div>
+            <h3 id="svg-title">生成态 SVG 预览</h3>
+            <svg viewBox="0 0 520 300" width="100%" height="220" aria-hidden="true">
+              <defs>
+                <linearGradient id="chartBg" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#11284a"></stop>
+                  <stop offset="100%" stop-color="#0b172a"></stop>
+                </linearGradient>
+              </defs>
+              <rect x="0" y="0" width="520" height="300" rx="22" fill="url(#chartBg)"></rect>
+              <g opacity="0.16" stroke="#7ea6ff">
+                <line x1="72" y1="54" x2="72" y2="248"></line>
+                <line x1="72" y1="248" x2="470" y2="248"></line>
+                <line x1="72" y1="194" x2="470" y2="194"></line>
+                <line x1="72" y1="140" x2="470" y2="140"></line>
+                <line x1="72" y1="86" x2="470" y2="86"></line>
+              </g>
+              <text x="72" y="36" fill="#eef4ff" font-size="18" font-weight="700">Offset vs Temperature</text>
+              <text x="72" y="270" fill="#9db0cf" font-size="11">Temperature (°C)</text>
+              <text x="12" y="52" fill="#9db0cf" font-size="11" transform="rotate(-90 12,52)">Offset (uV)</text>
+              <polyline
+                id="svg-line"
+                fill="none"
+                stroke="#7af0c8"
+                stroke-width="4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                points="72,182 142,166 212,149 282,126 352,104 422,86"
+              ></polyline>
+              <g fill="#eef4ff" id="svg-points">
+                <circle cx="72" cy="182" r="4"></circle>
+                <circle cx="142" cy="166" r="4"></circle>
+                <circle cx="212" cy="149" r="4"></circle>
+                <circle cx="282" cy="126" r="4"></circle>
+                <circle cx="352" cy="104" r="4"></circle>
+                <circle cx="422" cy="86" r="4"></circle>
+              </g>
+            </svg>
+          </div>
+
+          <div class="audit-card" style="margin-top: 14px;">
+            <div class="mini-label">Audit Artifacts</div>
+            <ul class="audit-list" id="audit-list"></ul>
+          </div>
+
+          <pre style="margin-top: 14px;" id="manifest-snippet" aria-label="审计产物摘要"></pre>
+        </div>
+      </section>
+
+      <div class="footer-line">
+        公开脱敏复现 Demo，仅用于展示产品取舍与审计闭环；不包含真实客户数据、内部版本代码或真实部署界面。
+      </div>
+    </main>
+
+    <script>
+      const states = {
+        rejected: {
+          badge: "低置信度拒绝中",
+          badgeClass: "badge warn",
+          decisionTitle: "低置信度拒绝",
+          decisionCopy: "置信度 0.63，低于 0.85 阈值，停止自动出图。",
+          confidence: "0.63",
+          policy: "拒绝生成",
+          policyClass: "status-value bad",
+          review: "待确认",
+          auditItems: [
+            "selected_reference.json 记录候选模板 2 份，但未选定最终模板。",
+            "match_report.json 标出 x-axis 候选 temp_c，y-axis 候选 offset_uv，整体置信度不足。",
+            "manifest.json 仅登记输入文件与拒绝原因，不写出 SVG 产物。"
+          ],
+          pdf: [
+            "figure-request.pdf",
+            "chart_title: Offset vs Temperature",
+            "x_axis: Temperature (°C)",
+            "y_axis: Offset (uV)",
+            "style_hint: clean datasheet line chart"
+          ].join("\n"),
+          csv: [
+            "lab_measurements.csv",
+            "sample_id,temp_c,offset_uv,bias_ma",
+            "A01,-40,6.2,0.9",
+            "A02,-10,5.4,0.9",
+            "A03,25,4.6,0.9",
+            "A04,85,3.4,0.9"
+          ].join("\n"),
+          manifest: [
+            "{",
+            '  "run_mode": "reject_before_generation",',
+            '  "input_files": ["figure-request.pdf", "lab_measurements.csv"],',
+            '  "confidence_threshold": 0.85,',
+            '  "observed_confidence": 0.63,',
+            '  "svg_written": false,',
+            '  "reason": "axis_semantics_need_manual_confirmation"',
+            "}"
+          ].join("\n"),
+          line: "72,194 142,188 212,180 282,170 352,162 422,154",
+          pointOpacity: "0.34"
+        },
+        approved: {
+          badge: "人工确认后已生成",
+          badgeClass: "badge ok",
+          decisionTitle: "人工批准后生成",
+          decisionCopy: "人工确认 x-axis=temp_c、y-axis=offset_uv，允许继续生成 SVG。",
+          confidence: "0.91",
+          policy: "生成并审计",
+          policyClass: "status-value good",
+          review: "已批准",
+          auditItems: [
+            "selected_reference.json 固定样式模板 `line_datasheet_v2` 与字段映射 temp_c → x / offset_uv → y。",
+            "match_report.json 保留 top-3 候选及人工确认记录，后续可追溯为什么不是 bias_ma。",
+            "manifest.json 记录输入文件哈希、模板版本、SVG 文件名与确认时间。"
+          ],
+          pdf: [
+            "figure-request.pdf",
+            "chart_title: Offset vs Temperature",
+            "x_axis: Temperature (°C)",
+            "y_axis: Offset (uV)",
+            "note: reviewer approved mapping before render"
+          ].join("\n"),
+          csv: [
+            "lab_measurements.csv",
+            "sample_id,temp_c,offset_uv,bias_ma",
+            "A01,-40,6.2,0.9",
+            "A02,-10,5.4,0.9",
+            "A03,25,4.6,0.9",
+            "A04,85,3.4,0.9",
+            "A05,125,2.5,0.9"
+          ].join("\n"),
+          manifest: [
+            "{",
+            '  "run_mode": "approved_after_review",',
+            '  "selected_reference": "line_datasheet_v2",',
+            '  "mapping": {"x": "temp_c", "y": "offset_uv"},',
+            '  "svg_written": true,',
+            '  "output_file": "offset_vs_temperature.svg",',
+            '  "audit_files": ["manifest.json", "match_report.json", "selected_reference.json"]',
+            "}"
+          ].join("\n"),
+          line: "72,182 142,166 212,149 282,126 352,104 422,86",
+          pointOpacity: "1"
+        }
+      };
+
+      const el = {
+        pipelineBadge: document.getElementById("pipeline-badge"),
+        decisionTitle: document.getElementById("decision-title"),
+        decisionCopy: document.getElementById("decision-copy"),
+        confidence: document.getElementById("confidence-value"),
+        policy: document.getElementById("policy-value"),
+        review: document.getElementById("review-value"),
+        pdf: document.getElementById("pdf-snippet"),
+        csv: document.getElementById("csv-snippet"),
+        auditList: document.getElementById("audit-list"),
+        manifest: document.getElementById("manifest-snippet"),
+        artifactBadge: document.getElementById("artifact-badge"),
+        line: document.getElementById("svg-line"),
+        points: document.getElementById("svg-points")
+      };
+
+      function render(mode) {
+        const state = states[mode];
+        el.pipelineBadge.className = state.badgeClass;
+        el.pipelineBadge.textContent = state.badge;
+        el.decisionTitle.textContent = state.decisionTitle;
+        el.decisionCopy.textContent = state.decisionCopy;
+        el.confidence.textContent = state.confidence;
+        el.policy.className = state.policyClass;
+        el.policy.textContent = state.policy;
+        el.review.textContent = state.review;
+        el.pdf.textContent = state.pdf;
+        el.csv.textContent = state.csv;
+        el.manifest.textContent = state.manifest;
+        el.auditList.innerHTML = state.auditItems.map((item) => `<li>${item}</li>`).join("");
+        el.artifactBadge.textContent = mode === "approved" ? "SVG 与审计产物已写出" : "先拒绝，再等待人工确认";
+        el.line.setAttribute("points", state.line);
+        el.points.style.opacity = state.pointOpacity;
+      }
+
+      const initialMode = new URLSearchParams(window.location.search).get("mode");
+      render(initialMode === "approved" ? "approved" : "rejected");
+
+      document.querySelectorAll("button[data-mode]").forEach((button) => {
+        button.addEventListener("click", () => render(button.dataset.mode));
+      });
+    </script>
+  </body>
+</html>
