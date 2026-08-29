@@ -2,7 +2,7 @@
   --ink: #edf2ff;
   --ink-strong: #fff;
   --muted: #a9b4cb;
-  --muted-quiet: #6f7b95;
+  --muted-quiet: #7886a2;
   --canvas: #080d1a;
   --surface: #101829;
   --line: rgba(175, 194, 229, .18);
@@ -59,6 +59,7 @@ strong { color: var(--ink-strong); font-weight: 700; }
 .sidebar-bottom a:hover { color: var(--primary-bright); }
 
 .main-content { min-width: 0; padding: clamp(3.5rem, 8vw, 7rem) 0 3.5rem; }
+.main-content:focus { outline: none; }
 .section-anchor { scroll-margin-top: 1.5rem; }
 .hero { position: relative; min-height: 650px; padding: 2.25rem 0 5rem; }
 .hero::after { position: absolute; z-index: -1; right: 0; bottom: 2.25rem; width: min(48vw, 460px); aspect-ratio: 1; content: ""; border: 1px solid rgba(120,166,255,.16); border-radius: 50%; box-shadow: inset 0 0 80px rgba(120,166,255,.06); }
@@ -66,7 +67,7 @@ strong { color: var(--ink-strong); font-weight: 700; }
 .eyebrow { display: flex; align-items: center; gap: .55rem; margin-bottom: 1.35rem; }
 .eyebrow-dot { width: .5rem; height: .5rem; background: var(--signal); border-radius: 50%; box-shadow: 0 0 0 4px rgba(180,241,191,.11); }
 h1, h2, h3, h4, p { margin-top: 0; }
-h1 { max-width: 800px; margin-bottom: 1.45rem; color: var(--ink-strong); font-size: clamp(3.25rem, 7.3vw, 6.15rem); font-weight: 760; letter-spacing: -.075em; line-height: .98; }
+h1 { max-width: 800px; margin-bottom: 1.45rem; color: var(--ink-strong); font-size: clamp(3.25rem, 6.2vw, 5.4rem); font-weight: 760; letter-spacing: -.075em; line-height: .98; }
 h1 em { color: var(--primary-bright); font-style: normal; }
 .hero-lead { max-width: 720px; margin-bottom: 2rem; color: var(--muted); font-size: clamp(1rem, 1.45vw, 1.16rem); line-height: 1.82; }
 .hero-actions, .case-links { display: flex; flex-wrap: wrap; gap: .75rem; }
