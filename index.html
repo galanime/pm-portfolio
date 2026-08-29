@@ -1,134 +1,357 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>张恒玮 · AI 产品经理</title>
-<meta name="description" content="张恒玮 — 北邮硕士 2027 届，AI 产品方向，擅长需求拆解、AI 工作流设计、人机协同流程与产品 Demo 快速验证。"/>
-<style>
-*,*::before,*::after{box-sizing:border-box}
-:root{
-  --bg:#0d1117; --panel:#161b22; --line:#26303b; --fg:#e6edf3; --muted:#8b949e;
-  --accent:#6366f1; --ok:#10b981; --warn:#f59e0b; --danger:#f85149;
-}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--fg);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
-  line-height:1.75;-webkit-font-smoothing:antialiased}
-a{color:var(--accent);text-decoration:none}
-a:hover{text-decoration:underline}
-.wrap{display:flex;max-width:1220px;margin:0 auto;gap:48px;padding:0 28px}
-.side{width:242px;flex:none;position:sticky;top:0;height:100vh;display:flex;align-items:center}
-.side-in{width:100%}
-.brand{font-size:30px;margin:0 0 4px;letter-spacing:.5px}
-.brand-sub{margin:0 0 10px;color:var(--accent);font-weight:600;font-size:15px}
-.brand-desc{margin:0 0 26px;color:var(--muted);font-size:13px;line-height:1.9}
-.nav{list-style:none;padding:0;margin:0 0 26px}
-.nav li{margin-bottom:9px}
-.nav a{color:var(--muted);font-size:13px;letter-spacing:.4px}
-.nav a:hover{color:var(--fg);text-decoration:none}
-.side-meta{border-top:1px solid var(--line);padding-top:16px;color:var(--muted);font-size:12px;line-height:2}
-.main{flex:1;min-width:0;padding:78px 0 90px}
-.hero-title{font-size:38px;margin:0 0 8px;line-height:1.35}
-.hero-sub{color:var(--accent);font-size:17px;font-weight:600;margin:0 0 16px}
-.hero-desc{color:var(--muted);font-size:14.5px;max-width:720px;margin:0 0 26px}
-.btns{display:flex;gap:12px;flex-wrap:wrap}
-.btn{display:inline-block;border:1px solid var(--line);border-radius:6px;padding:9px 18px;
-  font-size:13.5px;color:var(--fg);background:var(--panel);transition:.15s}
-.btn:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
-.btn-primary{background:var(--accent);border-color:var(--accent);color:#fff}
-.btn-primary:hover{opacity:.88;color:#fff}
-.sec{margin-top:74px}
-.sec-title{font-size:21px;margin:0 0 22px;padding-bottom:10px;border-bottom:1px solid var(--line)}
-.sec-body p{color:var(--muted);font-size:14.5px;margin:0 0 14px}
-.sec-body strong{color:var(--fg)}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;
-  padding:26px 28px;margin-bottom:24px}
-.card-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:4px}
-.card-name{font-size:18px;margin:0;font-weight:700}
-.pill{font-size:11px;border-radius:11px;padding:2px 10px;border:1px solid;line-height:1.7}
-.pill-live{color:var(--ok);border-color:var(--ok)}
-.pill-private{color:var(--warn);border-color:var(--warn)}
-.card-tag{color:var(--muted);font-size:13.5px;margin:0 0 18px}
-.figure{margin:0 0 20px;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#0d1117}
-.figure img{display:block;width:100%;height:auto}
-.figure figcaption{color:var(--muted);font-size:11.5px;padding:8px 12px;border-top:1px solid var(--line)}
-.blk{margin-bottom:16px}
-.blk-label{color:var(--accent);font-size:12px;font-weight:700;letter-spacing:1px;margin:0 0 6px}
-.blk-text{color:var(--muted);font-size:14px;margin:0}
-.blk-text strong{color:var(--fg)}
-ul.pts{list-style:none;padding:0;margin:0}
-ul.pts li{color:var(--muted);font-size:14px;padding-left:19px;position:relative;margin-bottom:7px}
-ul.pts li::before{content:"▸";position:absolute;left:0;color:var(--accent)}
-ul.pts li strong{color:var(--fg)}
-.tags{list-style:none;padding:0;margin:16px 0 0;display:flex;flex-wrap:wrap;gap:8px}
-.tags li{font-size:11.5px;color:var(--muted);border:1px solid var(--line);
-  border-radius:5px;padding:3px 10px;background:#0d1117}
-.grp{margin-bottom:20px}
-.grp-label{color:var(--fg);font-size:13.5px;font-weight:700;margin:0 0 9px}
-.foot{margin-top:80px;padding-top:22px;border-top:1px solid var(--line);
-  color:var(--muted);font-size:12.5px}
-@media(max-width:900px){
-  .wrap{flex-direction:column;gap:0;padding:0 20px}
-  .side{width:100%;position:static;height:auto;padding-top:44px}
-  .nav{display:flex;gap:18px;flex-wrap:wrap}
-  .nav li{margin:0}
-  .main{padding-top:36px}
-  .hero-title{font-size:29px}
-}
-</style>
-</head>
-<body>
-<div class="wrap">
-  <aside class="side"><div class="side-in">
-    <h1 class="brand">张恒玮</h1>
-    <p class="brand-sub">AI 产品经理</p>
-    <p class="brand-desc">北邮硕士 · 2027 届<br/>需求拆解 / AI 工作流 / 产品 Demo</p>
-    <ul class="nav"><li><a href="#about">01. About</a></li><li><a href="#projects">02. 产品案例</a></li><li><a href="#skills">03. Skills</a></li><li><a href="#contact">04. Contact</a></li></ul>
-    <div class="side-meta">base 北京<br/>heng1537@foxmail.com<br/>工程视角作品集见 <a href='https://galanime.github.io/portfolio/'>portfolio</a></div>
-  </div></aside>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="张恒玮｜北京邮电大学硕士，2027届 AI 产品经理 / 技术产品经理。以真实运行证据展示 AI Agent、产品工作流与可交付能力。" />
+    <meta name="theme-color" content="#0a1020" />
+    <title>张恒玮｜AI 产品经理作品集</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">跳到主要内容</a>
 
-  <main class="main">
-    <section>
-      <h2 class="hero-title">你好，我是张恒玮</h2>
-      <p class="hero-sub">需求拆解 · 人机协同流程 · 评估体系</p>
-      <p class="hero-desc">北京邮电大学硕士 · 2027 届 · base 北京。<br/>做过的产品里，既有覆盖 5 所院校约 5000 名学员的已上线小程序，也有几个自己从需求走到可交互 Demo 的 AI 工具；内容生产链路做过 4 小时到 15 分钟的提效。<br/>主要能力在需求拆解、人机协同流程设计和质量评估体系，也能用 Python / React 把 Demo 做出来验证可行性。</p>
-      <div class="btns">
-        <a class="btn btn-primary" href="resume-pm.pdf">下载简历 PDF</a>
-        <a class="btn" href="https://github.com/galanime" target="_blank" rel="noopener">GitHub</a>
-        
-      </div>
-    </section>
+    <div class="site-shell">
+      <aside class="sidebar" aria-label="页面导航">
+        <div class="sidebar-top">
+          <a class="brand" href="#overview" aria-label="张恒玮作品集首页">
+            <span class="brand-name">张恒玮</span>
+            <span class="brand-role">AI 产品经理 / 技术产品经理</span>
+          </a>
+          <p class="sidebar-summary">北邮硕士 · 2027届<br />把大模型能力变成可控、可交付的业务流程。</p>
+        </div>
 
-    <section id="about" class="sec">
-      <h3 class="sec-title">01. 我的工作方式</h3>
-      <div class="sec-body"><p>做每个案例之前先回答三个问题：用户是谁、卡在哪一步、现有方案为什么不够用。这三个答案确定之后再开始设计工作流。</p><p>设计的系统都会拆出「感知 → 决策 → 人工卡点 → 执行 → 反馈」的明确链路，让非技术同事也能看懂每一步在做什么。</p><p>每个产品定义完成率、重试率、时延、人工介入率这类核心指标，配套评估面板做版本对比。</p><p>需求验证阶段会自己用 Python / React 把 Demo 跑起来，先确认可行再讨论要不要投研发排期。</p></div>
-    </section>
+        <nav class="primary-nav" aria-label="站内导航">
+          <a href="#overview"><span>01</span> 概览</a>
+          <a href="#evidence"><span>02</span> 真实证据</a>
+          <a href="#projects"><span>03</span> 核心案例</a>
+          <a href="#workflow"><span>04</span> 工作流</a>
+          <a href="#capability"><span>05</span> 能力</a>
+          <a href="#contact"><span>06</span> 联系</a>
+        </nav>
 
-    <section id="projects" class="sec">
-      <h3 class="sec-title">02. 产品案例</h3>
-      <article class="card"><div class="card-head"><h4 class="card-name">考研题库学习产品</h4><span class="pill pill-live">已上线 · 覆盖约 5000 名学员</span></div><p class="card-tag">从甲方需求到真实上线：三角色学习闭环 + 内容获客增长链路</p><figure class="figure"><img src="assets/huihu-flow.svg" alt="三角色闭环与增长链路示意" loading="lazy"/><figcaption>三角色闭环与增长链路示意</figcaption></figure><div class="blk"><p class="blk-label">痛点</p><p class="blk-text">调研中三类角色各有卡点：学员碎片时间刷题需求强但传统题库产品重、答疑链路长；教师端群内答疑分散重复；运营端内容生产耗时。</p></div><div class="blk"><p class="blk-label">我的方案</p><p class="blk-text">面向学员、教师、运营<strong>三类角色</strong>做调研，设计<strong>学员刷题 / 教师答疑 / 管理员工单</strong>三角色闭环；构建「题目 — 知识点 — 问答」关联知识体系，让一次答疑的结果可以被后续复用。</p></div><div class="blk"><ul class="pts"><li><strong>交付物</strong>：业务流程、功能清单、PRD、Figma 高保真原型、功能结构图、用户流程图、版本迭代记录、后端联调接口清单</li><li><strong>真实规模</strong>：覆盖 5 所院校约 5000 名当届学员，协同后端完成接口联调与上线</li><li><strong>迭代闭环</strong>：依据甲方与真实使用反馈完成 2–3 轮迭代</li><li><strong>增长链路</strong>：负责小红书 / B 站 / 抖音渠道运营，半年全平台涨粉 2 万，持续为小程序导流</li><li><strong>数据闭环</strong>：以私信咨询量与私域转化量为核心指标复盘内容表现，据此调整发布节奏与时段、为高咨询量内容配套 AI 客服话术承接；咨询转化量提升约 30%，答疑响应由人工在线时段的间断回复变为 24 小时承接</li><li><strong>效率</strong>：AI 辅助开发使原型周期缩短约 90%</li></ul></div><ul class="tags"><li>需求调研</li><li>PRD / 原型</li><li>多角色流程</li><li>上线交付</li><li>增长闭环</li><li>教育产品</li></ul><div class="btns" style="margin-top:18px"><a class="btn" href="https://github.com/galanime/huihu-kaoyan-miniapp-public" target="_blank" rel="noopener">脱敏演示版仓库 →</a></div></article><article class="card"><div class="card-head"><h4 class="card-name">内容生产工作流自动化（n8n）</h4><span class="pill pill-live">有量化收益</span></div><p class="card-tag">单篇内容制作时间从 4 小时压到 15 分钟，保留人工终审环节</p><figure class="figure"><img src="assets/n8n-content-workflow.svg" alt="编排链路示意：生成节点 + 人工卡点 + 失败兜底" loading="lazy"/><figcaption>编排链路示意：生成节点 + 人工卡点 + 失败兜底</figcaption></figure><div class="blk"><p class="blk-label">痛点</p><p class="blk-text">内容团队要保证周更频次，但选题、文案、配图、格式校验全靠人工串，单篇耗时长；一旦全自动化又容易产出不能用的内容。</p></div><div class="blk"><p class="blk-label">我的方案</p><p class="blk-text">用 n8n 编排「<strong>选题评分 → 文案 / 视觉 Prompt → 格式校验 → 人工审核 → 失败兜底</strong>」工作流：AI 负责生成，人负责终审，任一节点失败回落上一稳定产物，不中断整条流水线。</p></div><div class="blk"><p class="blk-label">验证与成果</p><p class="blk-text">在 1 个自媒体账号试点：<strong>单篇制作由约 4 小时缩短至 15 分钟，周更由 1 篇提升至 7 篇</strong>；以内容产能、发布频次、人工修改量作为优化指标。</p></div><ul class="tags"><li>工作流编排</li><li>n8n</li><li>人机协同</li><li>效率量化</li><li>AIGC</li></ul></article><article class="card"><div class="card-head"><h4 class="card-name">AI 客服助手（人机协同）</h4><span class="pill pill-live">公开仓库</span></div><p class="card-tag">自动回复常规咨询，高风险话术强制人工确认</p><figure class="figure"><img src="assets/xianyu-riskguard.svg" alt="风控前置示意：5 类意图分诊，4 类高危动作强制转人工" loading="lazy"/><figcaption>风控前置示意：5 类意图分诊，4 类高危动作强制转人工</figcaption></figure><div class="blk"><p class="blk-label">痛点</p><p class="blk-text">账号私信 / 评论量大，人工回复不及时导致流失；但全自动回复容易触发平台风控或话术违规，账号风险高。</p></div><div class="blk"><p class="blk-label">我的方案</p><p class="blk-text">设计<strong>感知 → 分诊 → 拟人化改写 → 人工审批 → 执行 → 学习同步</strong>的人机协同流程：低风险常规问题自动处理，高风险动作强制进入人工卡点。</p></div><div class="blk"><ul class="pts"><li><strong>核心取舍</strong>：主动牺牲自动化率换账号安全 —— 改价、确认订单等高危动作即使模型判断正确也一律转人工，个人商家承受不起一次封号，自动化率不是这个场景的北极星指标</li><li><strong>可解释</strong>：每条自动回复都记录意图判定与风控决策依据，可解释、可回放、可审计</li><li><strong>运营可自维护</strong>：话术库与策略解耦为 YAML 知识包 + FAQ JSONL，非技术运营同学能自己维护规则</li><li><strong>验证</strong>：待审队列 + 审计日志的 Web 面板承载运营日常；17 个自动化测试覆盖核心分诊与风控逻辑</li></ul></div><ul class="tags"><li>人机协同</li><li>风控设计</li><li>审批闭环</li><li>可解释性</li><li>运营效率</li></ul></article><article class="card"><div class="card-head"><h4 class="card-name">AI 短视频创作工具</h4><span class="pill pill-live">公开演示版</span></div><p class="card-tag">商家填写表单即可产出短视频脚本与发布包</p><div class="blk"><p class="blk-label">痛点</p><p class="blk-text">中小商家想做短视频获客，但不会写脚本、不懂剪辑，外包一条成本高、周期长，导致大量商家放弃视频渠道。</p></div><div class="blk"><p class="blk-label">我的方案</p><p class="blk-text">把短视频生产拆解为 <strong>brief → 脚本 → 分镜 → 发布包</strong> 的标准化工作流，每一步都是可配置、可预览、可回退的节点；用多智能体分别负责文案、视觉与结构，商家侧的操作简化为填写一份表单。</p></div><div class="blk"><ul class="pts"><li><strong>质量门禁</strong>：人工审批前置，未审批的任务不可进入导出阶段，内容风险由流程规则拦截</li><li><strong>双版本策略</strong>：Lite 版用于 0 成本演示与获客，Pro 版面向付费商用，能力边界清晰</li><li><strong>降级与成本控制</strong>：mock Provider + 降级链路，无付费 API 也能完整跑通，验证期 0 成本</li><li><strong>验证</strong>：独立完成可交互 Demo 并跑通全链路，沉淀界面教程与 Prompt 知识库；21 个自动化测试保证迭代不回退</li></ul></div><ul class="tags"><li>需求拆解</li><li>AI 工作流</li><li>审批门禁</li><li>双版本策略</li><li>AIGC</li></ul><div class="btns" style="margin-top:18px"><a class="btn" href="https://github.com/galanime/short-video-studio-lite" target="_blank" rel="noopener">GitHub →</a></div></article><article class="card"><div class="card-head"><h4 class="card-name">AI 生活助手</h4><span class="pill pill-live">公开仓库</span></div><p class="card-tag">用可量化的指标衡量 AI 助手的实际帮助程度</p><figure class="figure"><img src="assets/lifehelper-stack.svg" alt="用户旅程与评估面板示意" loading="lazy"/><figcaption>用户旅程与评估面板示意</figcaption></figure><div class="blk"><p class="blk-label">痛点</p><p class="blk-text">AI 助手能对话但完成不了任务是常见情况，用户描述不清具体问题在哪，团队也缺少判断优化方向的依据，根本原因是没有一套可量化的体验评估方法。</p></div><div class="blk"><p class="blk-label">我的方案</p><p class="blk-text">设计<strong>意图识别 → 任务拆解 → 工具调用 → 结果聚合</strong>的完整用户旅程，并定义完成率、重试率、端到端时延、人工评分等核心体验指标。</p></div><div class="blk"><ul class="pts"><li><strong>核心指标定义</strong>：北极星指标定为任务完成率，而不是回复率</li><li><strong>评估面板</strong>：评估仪表盘 + 人工评分入口，用数据驱动迭代意图识别与工具选择策略</li><li><strong>过程可视化</strong>：任务 DAG + Trace + 会话回放，让非技术干系人看懂决策链路，降低验收成本</li><li><strong>验证</strong>：112 个自动化测试保障体验不回退；评估体系可迁移到任何 Agent 类产品</li></ul></div><ul class="tags"><li>核心指标</li><li>评估体系</li><li>数据分析</li><li>AI Agent</li><li>体验设计</li></ul><div class="btns" style="margin-top:18px"><a class="btn" href="https://github.com/galanime/LifeHelper" target="_blank" rel="noopener">GitHub →</a></div></article><article class="card"><div class="card-head"><h4 class="card-name">用户问题闭环（中国移动）</h4><span class="pill pill-live">真实客户侧经历</span></div><p class="card-tag">100+ 用户问题的分类、跟踪、回访与跨团队推进</p><div class="blk"><p class="blk-label">背景</p><p class="blk-text">中国移动河南公司分公司网络维护实习（本科寒假，2024.02–2024.03）：一线用户问题分散在多个渠道，处理进度不透明，跨团队推进容易断链。</p></div><div class="blk"><p class="blk-label">我做的事</p><p class="blk-text">跟进 <strong>100+ 个用户问题反馈与处理进度</strong>，建立问题处理台账，跑通「分类 → 进度跟踪 → 结果回访 → 跨团队推进」闭环。</p></div><div class="blk"><p class="blk-label">结果</p><p class="blk-text">问题<strong>解决率 98%</strong>、<strong>满意度 95%</strong>；另完成 20+ 个基站巡检，排查出 3 处潜在设备隐患。</p></div><ul class="tags"><li>用户反馈闭环</li><li>问题分级</li><li>跨团队推进</li><li>满意度度量</li></ul></article>
-    </section>
+        <div class="sidebar-bottom">
+          <a href="https://github.com/galanime" target="_blank" rel="noopener noreferrer">GitHub @galanime <span aria-hidden="true">↗</span></a>
+          <a href="mailto:heng1537@foxmail.com">heng1537@foxmail.com</a>
+        </div>
+      </aside>
 
-    <section id="skills" class="sec">
-      <h3 class="sec-title">03. 能力矩阵</h3>
-      <div class="grp"><p class="grp-label">产品核心</p><ul class="tags"><li>需求拆解与用户场景分析</li><li>PRD / 用户故事 / 验收标准</li><li>AI 工作流设计</li><li>人机协同流程</li><li>核心指标定义</li><li>产品数据分析</li><li>竞品与市场调研</li></ul></div><div class="grp"><p class="grp-label">AI 认知</p><ul class="tags"><li>LLM 能力边界</li><li>Prompt 工程</li><li>AI Agent / 多智能体</li><li>工作流编排（n8n）</li><li>AI 质量评估与审批门禁</li></ul></div><div class="grp"><p class="grp-label">产品与协作工具</p><ul class="tags"><li>Figma / Pencil / Xmind</li><li>SQL / pandas</li><li>Notion / 飞书</li><li>可独立搭建可交互 Demo（React）</li></ul></div><div class="grp"><p class="grp-label">技术理解力（评估实现成本）</p><ul class="tags"><li>Python / FastAPI</li><li>工作流状态机</li><li>审批 / 风控 / 可观测</li><li>小程序 / Web 前端</li></ul></div>
-    </section>
+      <main id="main-content" class="main-content">
+        <section id="overview" class="hero section-anchor" aria-labelledby="hero-title">
+          <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> Available for 2027 campus recruitment</p>
+          <h1 id="hero-title">让 AI 能力<br /><em>进入真实业务闭环。</em></h1>
+          <p class="hero-lead">我是张恒玮，面向 AI 产品经理 / 技术产品经理岗位。我的工作重心不是堆叠模型能力，而是把<strong>用户任务、业务事实、模型边界、人审兜底和交付验证</strong>连成可以复用的产品流程。</p>
+          <div class="hero-actions" aria-label="主要链接">
+            <a class="button button-primary" href="resume-pm.pdf" download>下载最新简历 <span aria-hidden="true">↓</span></a>
+            <a class="button button-secondary" href="#evidence">查看真实运行证据 <span aria-hidden="true">↓</span></a>
+          </div>
 
-    <section id="contact" class="sec">
-      <h3 class="sec-title">04. Get In Touch</h3>
-      <div class="sec-body"><p>如果你团队在做 AI 原生产品、AIGC 工具、AI Agent 平台或 AI 应用产品化方向，欢迎邮件或通过 GitHub 联系我。</p><p>另有市场调查与分析大赛国家级二等奖、软件著作权 1 项、EI 会议论文 2 篇，简历中有详细说明。</p></div>
-      <div class="btns" style="margin-top:18px">
-        <a class="btn btn-primary" href="resume-pm.pdf">下载简历 PDF</a>
-        <a class="btn" href="https://github.com/galanime" target="_blank" rel="noopener">GitHub @galanime</a>
-      </div>
-    </section>
+          <dl class="outcome-strip" aria-label="核心成果">
+            <div>
+              <dt>5个</dt>
+              <dd>企业内部独立交付的软件产品/工具</dd>
+            </div>
+            <div>
+              <dt>约5000名</dt>
+              <dd>ToB 教育产品覆盖学员</dd>
+            </div>
+            <div>
+              <dt>4家 / 1家</dt>
+              <dd>AI 客服真实商家使用 / 付费迭代</dd>
+            </div>
+            <div>
+              <dt>30分钟 → 2分钟</dt>
+              <dd>芯片图表交付流程的单图处理时间</dd>
+            </div>
+          </dl>
+        </section>
 
-    <footer class="foot">
-      张恒玮 · AI 产品经理 · <a href="https://github.com/galanime">github.com/galanime</a>
-      &nbsp;·&nbsp; 图为架构 / 流程示意图，非产品截图
-    </footer>
-  </main>
-</div>
-</body>
+        <section id="evidence" class="section section-anchor evidence-section" aria-labelledby="evidence-title">
+          <div class="section-heading">
+            <p class="section-index">02 / Evidence</p>
+            <h2 id="evidence-title">真实运行证据</h2>
+            <p>以下是当前本地运行或公开脱敏 Demo 的页面截图；每张图均标注验证边界。流程 SVG 仅用于说明结构，不替代运行证据。</p>
+          </div>
+
+          <div class="evidence-grid">
+            <figure class="evidence-card evidence-card-featured">
+              <a href="assets/xianyu-agent-runtime.jpg" target="_blank" rel="noopener noreferrer" aria-label="在新窗口查看闲鱼 AI 客服 Agent 原图">
+                <img src="assets/xianyu-agent-runtime.jpg" alt="闲鱼 AI 客服 Agent 的公开脱敏本地 Demo：订单接管时生成草稿，并标出人工审核和发送限制" width="1600" height="900" loading="eager" fetchpriority="high" />
+              </a>
+              <figcaption>
+                <span class="status-badge status-public">公开脱敏 Demo</span>
+                <strong>闲鱼 AI 客服 Agent</strong>
+                <span>触发下单接管时生成草稿但禁止未审核发送；本次未连接真实账号、ADB 或外部日历。</span>
+              </figcaption>
+            </figure>
+
+            <figure class="evidence-card">
+              <a href="assets/demo2-molecular-lab.jpg" target="_blank" rel="noopener noreferrer" aria-label="在新窗口查看 Demo2 分子实验室原图">
+                <img src="assets/demo2-molecular-lab.jpg" alt="AsterFire Edu Demo2 当前本地运行的分子实验室页面，展示三维分子和 SchNet 教学链路" width="1600" height="900" loading="lazy" />
+              </a>
+              <figcaption>
+                <span class="status-badge status-live">当前本地运行</span>
+                <strong>Demo2 分子实验室</strong>
+                <span>展示 3D 分子 / SchNet 教学链路。</span>
+              </figcaption>
+            </figure>
+
+            <figure class="evidence-card">
+              <a href="assets/careerpilot-baidu-run.jpg" target="_blank" rel="noopener noreferrer" aria-label="在新窗口查看 CareerPilot 百度岗位演示原图">
+                <img src="assets/careerpilot-baidu-run.jpg" alt="CareerPilot 使用百度企业效能岗位 JD 作为本地演示输入的运行结果" width="1600" height="900" loading="lazy" />
+              </a>
+              <figcaption>
+                <span class="status-badge status-deterministic">确定性演示</span>
+                <strong>CareerPilot 岗位工作流</strong>
+                <span>以百度企业效能岗位 JD 为本地演示输入；Fake Provider，不是百度官方评分或真实招聘结论。</span>
+              </figcaption>
+            </figure>
+
+            <figure class="evidence-card evidence-card-tall">
+              <a href="assets/lifehelper-runtime.jpg" target="_blank" rel="noopener noreferrer" aria-label="在新窗口查看 LifeHelper 原图">
+                <img src="assets/lifehelper-runtime.jpg" alt="LifeHelper 本地 mock 工具链运行页面，包含任务 DAG、执行 Trace 与人工评分界面" width="1440" height="1800" loading="lazy" />
+              </a>
+              <figcaption>
+                <span class="status-badge status-mock">mock 运行</span>
+                <strong>LifeHelper 任务可观测</strong>
+                <span>本地 mock 工具链真实浏览器运行；6 节点 DAG、9 步 Trace、一次人工评分仅为本次演示样本，不是线上用户指标。</span>
+              </figcaption>
+            </figure>
+
+            <figure class="evidence-card">
+              <a href="assets/demo2-leo-boundary.jpg" target="_blank" rel="noopener noreferrer" aria-label="在新窗口查看 Demo2 Leo 边界原图">
+                <img src="assets/demo2-leo-boundary.jpg" alt="Demo2 Leo 助手在服务未连接时明确提示无法回答，而不是伪造回答" width="1600" height="900" loading="lazy" />
+              </a>
+              <figcaption>
+                <span class="status-badge status-live">当前本地运行</span>
+                <strong>Leo 助手失败边界</strong>
+                <span>服务未连接时明确不伪造回答。</span>
+              </figcaption>
+            </figure>
+
+            <figure class="evidence-card">
+              <a href="assets/careerpilot-trace-artifacts.jpg" target="_blank" rel="noopener noreferrer" aria-label="在新窗口查看 CareerPilot Trace 与 Artifacts 原图">
+                <img src="assets/careerpilot-trace-artifacts.jpg" alt="CareerPilot 本地运行的 Trace 和 Artifacts 页面，展示可追踪的执行过程和结果产物" width="1600" height="900" loading="lazy" />
+              </a>
+              <figcaption>
+                <span class="status-badge status-deterministic">确定性演示</span>
+                <strong>CareerPilot Trace / Artifacts</strong>
+                <span>运行 Trace 与 Artifacts 可追踪。</span>
+              </figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section id="projects" class="section section-anchor" aria-labelledby="projects-title">
+          <div class="section-heading section-heading-inline">
+            <div>
+              <p class="section-index">03 / Case studies</p>
+              <h2 id="projects-title">核心案例</h2>
+            </div>
+            <p>按“用户与问题 → 方案与 AI 边界 → 落地结果”展开。指标仅采用已确认事实。</p>
+          </div>
+
+          <article class="case-study case-study-primary">
+            <div class="case-meta"><span>01</span><span>2026.03 — 2026.05</span></div>
+            <div class="case-content">
+              <div class="case-heading">
+                <p class="case-type">AI Agent · 商家运营</p>
+                <h3>闲鱼 AI 客服 Agent</h3>
+                <p>产品负责人兼独立开发者 · 北京线上 3 家、线下 1 家商家真实使用</p>
+              </div>
+              <div class="case-grid">
+                <div>
+                  <h4>用户与问题</h4>
+                  <p>个人商家希望更快回复咨询，但不能让模型错误承诺价格、档期或库存。</p>
+                </div>
+                <div>
+                  <h4>方案与 AI 边界</h4>
+                  <p>用<strong>规则与 SQLite</strong>管理价格、押金、库存等业务事实；大模型只做受约束的理解与表达。流程从人工审核逐步演进为<strong>双门禁约束的自动发送</strong>。</p>
+                </div>
+                <div>
+                  <h4>落地结果</h4>
+                  <p>支持回复生成、草稿填入及库存 / 日历更新；4 家商家真实使用，<strong>其中 1 家购买后续迭代服务</strong>。</p>
+                </div>
+              </div>
+              <details class="case-details">
+                <summary>查看产品取舍与交付范围 <span aria-hidden="true">+</span></summary>
+                <p>优先处理“更快回复”和“不要错误承诺”之间的冲突：订单接管时生成草稿，未经过审核不能发送。公开页面只展示脱敏本地 Demo，不连接真实商家账号或外部系统。</p>
+              </details>
+              <div class="case-links">
+                <a href="https://github.com/galanime/xianyu-ai-customer-service-agent" target="_blank" rel="noopener noreferrer">查看公开仓库 <span aria-hidden="true">↗</span></a>
+                <a href="#evidence">查看运行截图 <span aria-hidden="true">↓</span></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="case-study">
+            <div class="case-meta"><span>02</span><span>2026.08 — 至今</span></div>
+            <div class="case-content">
+              <div class="case-heading">
+                <p class="case-type">AI4S 教育产品 · AI Copilot</p>
+                <h3>星使智算 Demo2</h3>
+                <p>AI 产品经理实习生 · 某 985 高校化学学院 AI4S 教育产品</p>
+              </div>
+              <div class="case-grid">
+                <div>
+                  <h4>用户与问题</h4>
+                  <p>化学学习者需要理解分子属性预测与模型机制，而不是只拿到黑箱计算结果。</p>
+                </div>
+                <div>
+                  <h4>方案与 AI 边界</h4>
+                  <p>通过访谈和竞品调研，把 MLP、SchNet、分子属性预测及 HOMO/LUMO 组织为“知识讲解—可视化—代码练习—AI 纠错—结果解释”；AI Copilot 设计 System Prompt、上下文交互、流式输出、代码诊断与 Diff。</p>
+                </div>
+                <div>
+                  <h4>落地结果</h4>
+                  <p>形成<strong>2 个 Demo 核心方案、3 份 PRD</strong>；从 Figma 到可运行 MVP，实现 3D 分子/轨道可视化、真实 PyTorch 训练与预测，推进<strong>2 轮版本迭代</strong>。</p>
+                </div>
+              </div>
+              <details class="case-details">
+                <summary>查看验证边界 <span aria-hidden="true">+</span></summary>
+                <p>运行截图证明当前本地的教学页面和可视化链路；当 Leo 服务未连接时，界面会明确提示，避免将不可用服务伪装成已生成答案。</p>
+              </details>
+            </div>
+          </article>
+
+          <article class="case-study">
+            <div class="case-meta"><span>03</span><span>Agent Runtime · 独立开发</span></div>
+            <div class="case-content">
+              <div class="case-heading">
+                <p class="case-type">求职工作流 · Agent Runtime</p>
+                <h3>CareerPilot</h3>
+                <p>将岗位研究、材料匹配和证据核对组织为可追踪的任务流</p>
+              </div>
+              <div class="case-grid">
+                <div>
+                  <h4>用户与问题</h4>
+                  <p>求职材料生成若没有岗位证据和风险提示，容易把未验证经历写成事实。</p>
+                </div>
+                <div>
+                  <h4>方案与 AI 边界</h4>
+                  <p>以 Go 编排<strong>8 个工具与 4 路 Provider</strong>；用 JSON Schema、证据检测和规则降级约束输出，保留 Trace 与 Artifacts。</p>
+                </div>
+                <div>
+                  <h4>落地结果</h4>
+                  <p>完成本地可运行演示。页面中的百度 JD 输入仅用于确定性 Demo，<strong>不代表百度官方评估或真实招聘结论</strong>。</p>
+                </div>
+              </div>
+              <div class="case-links">
+                <a href="https://github.com/galanime/Careerpilot-agent" target="_blank" rel="noopener noreferrer">查看公开仓库 <span aria-hidden="true">↗</span></a>
+                <a href="#evidence">查看 Trace 证据 <span aria-hidden="true">↓</span></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="case-study">
+            <div class="case-meta"><span>04</span><span>2024 — 2026</span></div>
+            <div class="case-content">
+              <div class="case-heading">
+                <p class="case-type">ToB 教育产品 · AI 运营</p>
+                <h3>北京灰虎研题教育</h3>
+                <p>产品负责人（长期项目制）· 三角色小程序 + AI 运营助手</p>
+              </div>
+              <div class="case-grid">
+                <div>
+                  <h4>用户与问题</h4>
+                  <p>学员、教师和运营各有分散流程：刷题、答疑、内容生产与咨询承接没有形成闭环。</p>
+                </div>
+                <div>
+                  <h4>方案与 AI 边界</h4>
+                  <p>设计三角色小程序与“题目—知识点—问答”关联体系；用 n8n 编排选题、文案/视觉提示、格式校验、<strong>人工审核与失败兜底</strong>。</p>
+                </div>
+                <div>
+                  <h4>落地结果</h4>
+                  <p>公司一次性买断，覆盖 5 所院校约<strong>5000 名学员</strong>；咨询转化量约提升<strong>30%</strong>，答疑升级为 24 小时承接，单篇内容制作由约<strong>4 小时缩短至约 15 分钟</strong>。</p>
+                </div>
+              </div>
+              <div class="case-links">
+                <a href="https://github.com/galanime/huihu-kaoyan-miniapp-public" target="_blank" rel="noopener noreferrer">查看脱敏演示仓库 <span aria-hidden="true">↗</span></a>
+              </div>
+            </div>
+          </article>
+
+          <div class="supplementary-cases" aria-label="补充案例">
+            <div class="supplementary-intro">
+              <p class="section-index">Supplementary</p>
+              <h3>补充案例</h3>
+              <p>不同场景下，始终把模型输出、流程状态和人工责任边界拆开设计。</p>
+            </div>
+            <article class="supplementary-case">
+              <p class="case-type">LifeHelper</p>
+              <h4>Agent 可观测与人工评分</h4>
+              <p>以任务 DAG、Trace、工具调用和结果聚合呈现执行过程；保留人工评分，<strong>112 项 Pytest</strong>覆盖回归验证。</p>
+              <a href="https://github.com/galanime/LifeHelper" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+            </article>
+            <article class="supplementary-case">
+              <p class="case-type">Chart Agent</p>
+              <h4>芯片验证图表自动化</h4>
+              <p>PDF 图题识别、CSV 语义匹配、模板出图与审计清单；低置信度拒绝，端侧部署保障数据不出内网。单图约<strong>30 分钟缩短至约 2 分钟</strong>。</p>
+            </article>
+            <article class="supplementary-case">
+              <p class="case-type">Short Video Studio Lite</p>
+              <h4>内容生产状态与审批门禁</h4>
+              <p>以<strong>9 状态</strong>管理内容生产流程，导出前必须通过人工审批；区分 Lite / Pro 能力边界。</p>
+              <a href="https://github.com/galanime/short-video-studio-lite" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+            </article>
+          </div>
+        </section>
+
+        <section id="workflow" class="section section-anchor workflow-section" aria-labelledby="workflow-title">
+          <div class="section-heading">
+            <p class="section-index">04 / Product workflow</p>
+            <h2 id="workflow-title">我的 AI 产品工作流</h2>
+            <p>这是一套决策流程，不是“模型接入清单”。每一步都要回答：谁负责、何时介入、失败时如何回退。</p>
+          </div>
+          <ol class="workflow-list">
+            <li><span>01</span><strong>场景</strong><small>找到具体用户任务与原始低效环节</small></li>
+            <li><span>02</span><strong>访谈 / 调研</strong><small>确认真实约束、例外与可衡量结果</small></li>
+            <li><span>03</span><strong>任务链路</strong><small>拆出输入、判断、执行、反馈</small></li>
+            <li><span>04</span><strong>PRD / Figma</strong><small>把体验、优先级与验收标准写清楚</small></li>
+            <li><span>05</span><strong>边界设计</strong><small>划分模型、规则与数据库该负责什么</small></li>
+            <li><span>06</span><strong>MVP</strong><small>以可运行原型验证技术和交互可行性</small></li>
+            <li><span>07</span><strong>人审 / 兜底 / 评测</strong><small>让高风险动作可阻断、可回退、可追踪</small></li>
+            <li><span>08</span><strong>交付与迭代</strong><small>依据真实使用反馈继续调整版本</small></li>
+          </ol>
+        </section>
+
+        <section id="capability" class="section section-anchor capability-section" aria-labelledby="capability-title">
+          <div class="section-heading">
+            <p class="section-index">05 / Capabilities</p>
+            <h2 id="capability-title">把产品判断落到原型与交付</h2>
+          </div>
+          <div class="capability-grid">
+            <section>
+              <h3>产品方法</h3>
+              <p>用户访谈、需求拆解、竞品分析、PRD、Figma、优先级判断、MVP 与版本迭代。</p>
+            </section>
+            <section>
+              <h3>AI 产品设计</h3>
+              <p>System Prompt、上下文交互、流式输出、工具链路、模型/规则/业务事实边界、人审和失败兜底。</p>
+            </section>
+            <section>
+              <h3>技术与原型</h3>
+              <p>Python、Go、FastAPI、SQL/SQLite、PyTorch；使用 Codex / Claude 辅助验证原型与可运行 MVP。</p>
+            </section>
+          </div>
+        </section>
+
+        <section id="contact" class="contact-panel section-anchor" aria-labelledby="contact-title">
+          <div>
+            <p class="section-index">06 / Contact</p>
+            <h2 id="contact-title">聊聊下一个可交付的 AI 产品。</h2>
+          </div>
+          <div class="contact-actions">
+            <a href="tel:17638342407">17638342407</a>
+            <a href="mailto:heng1537@foxmail.com">heng1537@foxmail.com</a>
+            <a href="https://github.com/galanime" target="_blank" rel="noopener noreferrer">github.com/galanime <span aria-hidden="true">↗</span></a>
+          </div>
+        </section>
+
+        <footer class="site-footer">
+          <p>页面包含真实运行截图与流程示意图，均按 caption 标注验证边界。</p>
+          <p>© <span>2026</span> 张恒玮 · AI 产品经理作品集</p>
+        </footer>
+      </main>
+    </div>
+  </body>
 </html>
