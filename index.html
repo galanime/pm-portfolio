@@ -3,158 +3,368 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="张恒玮｜2027届 AI 产品经理 / 技术产品经理。七个项目的运行、复现或 Mock 证据与可核验边界。" />
-    <meta name="theme-color" content="#07152b" />
+    <meta name="description" content="张恒玮｜2027届 AI 产品经理 / 技术产品经理。竖版 A4 作品集，展示七个项目的运行证据、产品机制、交付结果与事实边界。" />
+    <meta name="theme-color" content="#070d16" />
     <title>张恒玮｜AI 产品经理作品集</title>
     <link rel="icon" href="data:," />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <a class="skip-link" href="#project-board">跳到项目证据</a>
+    <a class="skip-link" href="#case-01">跳到项目案例</a>
 
-    <main class="portfolio" id="main-content">
-      <header class="topbar" aria-labelledby="page-title">
-        <div class="identity">
-          <p class="eyebrow">2027 CAMPUS RECRUITMENT · EVIDENCE BOARD</p>
-          <div class="title-row">
+    <div class="viewer-tools" aria-label="作品集操作">
+      <span>竖版 A4 · 8 页</span>
+      <a href="resume-pm.pdf" download>下载简历 ↓</a>
+      <button type="button" onclick="window.print()">打印竖版 A4 ⎙</button>
+    </div>
+
+    <main class="booklet" id="main-content">
+      <section class="sheet cover-sheet" aria-labelledby="page-title">
+        <div class="sheet-content cover-content">
+          <header class="cover-header">
+            <p class="eyebrow">2027 CAMPUS RECRUITMENT · PRODUCT PORTFOLIO</p>
+            <p class="document-code">ZHANG HENGWEI / PM-2027</p>
+          </header>
+
+          <div class="cover-hero">
+            <p class="cover-label">AI 产品经理 / 技术产品经理</p>
             <h1 id="page-title">张恒玮</h1>
-            <p>AI 产品经理 <span aria-hidden="true">/</span> 技术产品经理</p>
+            <p class="cover-statement">把模型能力转译为可控的业务流程：任务定义、工具调用、人审兜底与真实交付验证。</p>
           </div>
-          <p class="positioning">把模型能力转译为可控的业务流程：任务定义、工具调用、人审兜底与真实交付验证。</p>
-        </div>
 
-        <div class="topbar-actions" aria-label="联系方式与作品材料">
-          <div class="contact-links">
+          <dl class="proof-strip" aria-label="已确认成果摘要">
+            <div><dt>5 个</dt><dd>企业内部独立交付的软件产品 / 工具</dd></div>
+            <div><dt>约 5000 名</dt><dd>ToB 教育产品覆盖学员</dd></div>
+            <div><dt>4 家 / 1 家</dt><dd>AI 客服使用商家 / 付费迭代服务</dd></div>
+          </dl>
+
+          <div class="cover-grid">
+            <section class="cover-note" aria-labelledby="reading-title">
+              <p class="section-number">01 / READING GUIDE</p>
+              <h2 id="reading-title">先看运行证据，再看产品取舍</h2>
+              <p>每个案例都将截图状态、交付结果与事实边界分开说明。公开 Demo、当前本地运行、确定性演示、公开 Mock 与脱敏复现不会混为同一种证据。</p>
+            </section>
+
+            <nav class="case-index" aria-label="项目目录">
+              <a href="#case-01"><span>01</span><strong>闲鱼 AI 客服 Agent</strong><small>商家真实使用 / 付费迭代</small></a>
+              <a href="#case-02"><span>02</span><strong>星使智算 Demo2</strong><small>AI4S 教学产品</small></a>
+              <a href="#case-03"><span>03</span><strong>CareerPilot</strong><small>Agent 工具链与可观测性</small></a>
+              <a href="#case-04"><span>04</span><strong>北京灰虎研题教育</strong><small>ToB 教育产品交付</small></a>
+              <a href="#case-05"><span>05</span><strong>LifeHelper</strong><small>DAG / Trace / 人工评分</small></a>
+              <a href="#case-06"><span>06</span><strong>Chart Agent</strong><small>内部效率工具 / 公开复现</small></a>
+              <a href="#case-07"><span>07</span><strong>Short Video Studio Lite</strong><small>状态机与人审门禁</small></a>
+            </nav>
+          </div>
+
+          <div class="cover-contact">
             <a href="tel:17638342407">17638342407</a>
             <span aria-hidden="true">｜</span>
             <a href="mailto:heng1537@foxmail.com">heng1537@foxmail.com</a>
             <span aria-hidden="true">｜</span>
-            <a href="https://github.com/galanime" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-          </div>
-          <div class="document-actions">
-            <a class="action-button action-primary" href="resume-pm.pdf" download>下载简历 <span aria-hidden="true">↓</span></a>
-            <button class="action-button" type="button" onclick="window.print()">打印一页版 <span aria-hidden="true">⎙</span></button>
+            <a href="https://github.com/galanime" target="_blank" rel="noopener noreferrer">github.com/galanime ↗</a>
           </div>
         </div>
-
-        <dl class="proof-strip" aria-label="已确认成果摘要">
-          <div><dt>5 个</dt><dd>企业内部独立交付的软件产品 / 工具</dd></div>
-          <div><dt>约 5000 名</dt><dd>ToB 教育产品覆盖学员</dd></div>
-          <div><dt>4 家 / 1 家</dt><dd>AI 客服使用商家 / 付费迭代服务</dd></div>
-        </dl>
-      </header>
-
-      <section class="board-section" id="project-board" aria-labelledby="board-title" tabindex="-1">
-        <div class="board-heading">
-          <div>
-            <p class="section-kicker">RUNTIME &amp; DELIVERY EVIDENCE</p>
-            <h2 id="board-title">7 个项目，一屏查看运行、交付与边界</h2>
-          </div>
-          <p>证据类型以标签为准：当前本地运行、公开脱敏 Demo、确定性演示、公开 Mock 与脱敏复现分开标注。</p>
-        </div>
-
-        <div class="project-grid">
-          <article class="project-card project-card-wide" aria-labelledby="xianyu-title">
-            <a class="project-image" href="assets/xianyu-agent-runtime.jpg" target="_blank" rel="noopener noreferrer">
-              <img src="assets/xianyu-agent-runtime.jpg" alt="闲鱼 AI 客服 Agent 的公开脱敏运行页面，展示回复生成、订单接管与人工审核流程" width="1600" height="900" loading="eager" fetchpriority="high" />
-            </a>
-            <div class="card-content">
-              <div class="card-topline"><span class="status status-public">公开脱敏 Demo</span><span>01</span></div>
-              <h3 id="xianyu-title">闲鱼 AI 客服 Agent</h3>
-              <p class="outcome">4 家商家真实使用，1 家购买后续迭代服务。</p>
-              <p class="boundary">本次不连接真实账号、ADB 或外部日历；展示受约束的客服工作流。</p>
-              <a class="source-link" href="https://github.com/galanime/xianyu-ai-customer-service-agent" target="_blank" rel="noopener noreferrer">公开仓库 ↗</a>
-            </div>
-          </article>
-
-          <article class="project-card" aria-labelledby="demo2-title">
-            <a class="project-image" href="assets/demo2-molecular-lab.jpg" target="_blank" rel="noopener noreferrer">
-              <img src="assets/demo2-molecular-lab.jpg" alt="星使智算 Demo2 的本地教学页面，展示分子三维可视化与 SchNet 学习链路" width="1600" height="900" loading="eager" />
-            </a>
-            <div class="card-content">
-              <div class="card-topline"><span class="status status-live">当前本地运行</span><span>02</span></div>
-              <h3 id="demo2-title">星使智算 Demo2</h3>
-              <p class="outcome">2 个核心方案 · 3 份 PRD · 2 轮迭代。</p>
-              <p class="boundary">截图证明教学页面与 3D / SchNet 链路，不外推为训练结论。</p>
-              <span class="source-note">AI4S 教学产品交付</span>
-            </div>
-          </article>
-
-          <article class="project-card" aria-labelledby="careerpilot-title">
-            <a class="project-image" href="assets/careerpilot-baidu-run.jpg" target="_blank" rel="noopener noreferrer">
-              <img src="assets/careerpilot-baidu-run.jpg" alt="CareerPilot 的确定性演示页面，展示岗位输入、工具调用与可追踪结果" width="1600" height="900" loading="eager" />
-            </a>
-            <div class="card-content">
-              <div class="card-topline"><span class="status status-deterministic">确定性演示</span><span>03</span></div>
-              <h3 id="careerpilot-title">CareerPilot</h3>
-              <p class="outcome">8 工具 · 4 路 Provider · Trace 与 Artifacts。</p>
-              <p class="boundary">百度 JD 仅为演示输入；Fake Provider 不代表百度官方结论。</p>
-              <a class="source-link" href="https://github.com/galanime/Careerpilot-agent" target="_blank" rel="noopener noreferrer">公开仓库 ↗</a>
-            </div>
-          </article>
-
-          <article class="project-card" aria-labelledby="huihu-title">
-            <a class="project-image project-image-mobile" href="assets/huihu-student-entry-runtime.png" target="_blank" rel="noopener noreferrer">
-              <img src="assets/huihu-student-entry-runtime.png" alt="北京灰虎研题教育公开 Mock 小程序在微信开发者工具中的运行页面，展示目标院校选择与进入题库流程" width="780" height="1506" loading="eager" />
-            </a>
-            <div class="card-content">
-              <div class="card-topline"><span class="status status-live">公开 Mock 小程序</span><span>04</span></div>
-              <h3 id="huihu-title">北京灰虎研题教育</h3>
-              <p class="outcome">三角色产品 · 覆盖 5 所院校约 5000 名学员 · 公司买断。</p>
-              <p class="boundary">微信开发者工具运行截图；公开仓库使用本地 Mock 数据，不发起支付或上传信息。</p>
-              <a class="source-link" href="https://github.com/galanime/huihu-kaoyan-miniapp-public" target="_blank" rel="noopener noreferrer">公开仓库 ↗</a>
-            </div>
-          </article>
-
-          <article class="project-card" aria-labelledby="lifehelper-title">
-            <a class="project-image" href="assets/lifehelper-runtime.jpg" target="_blank" rel="noopener noreferrer">
-              <img src="assets/lifehelper-runtime.jpg" alt="LifeHelper 的本地 mock 运行页面，展示任务 DAG、Trace 与人工评分" width="1440" height="1800" loading="eager" />
-            </a>
-            <div class="card-content">
-              <div class="card-topline"><span class="status status-mock">本地 mock 运行</span><span>05</span></div>
-              <h3 id="lifehelper-title">LifeHelper</h3>
-              <p class="outcome">DAG 编排 · Trace 回放 · 人工评分。</p>
-              <p class="boundary">评分只对应本地样本，不是线上用户指标。</p>
-              <a class="source-link" href="https://github.com/galanime/LifeHelper" target="_blank" rel="noopener noreferrer">公开仓库 ↗</a>
-            </div>
-          </article>
-
-          <article class="project-card" aria-labelledby="chart-title">
-            <a class="project-image" href="assets/chart-agent-public-runtime.jpg" target="_blank" rel="noopener noreferrer">
-              <img src="assets/chart-agent-public-runtime.jpg" alt="Chart Agent 公开脱敏复现页面，展示示例 PDF 与 CSV 语义匹配、人工确认、SVG 预览和审计产物" width="1440" height="900" loading="eager" />
-            </a>
-            <div class="card-content">
-              <div class="card-topline"><span class="status status-reconstruction">公开脱敏复现</span><span>06</span></div>
-              <h3 id="chart-title">Chart Agent</h3>
-              <p class="outcome">内部交付：单图约 30 分钟缩短至约 2 分钟。</p>
-              <p class="boundary boundary-strong">非内部源码 / 真实数据，不证明内部版本 UI；公开页按已验证流程复现。</p>
-              <a class="source-link" href="demos/chart-agent-public/" target="_blank" rel="noopener noreferrer">运行公开复现 ↗</a>
-            </div>
-          </article>
-
-          <article class="project-card project-card-last" aria-labelledby="short-video-title">
-            <a class="project-image" href="assets/short-video-review-ready.png" target="_blank" rel="noopener noreferrer">
-              <img src="assets/short-video-review-ready.png" alt="Short Video Studio Lite 的公开 Lite Mock 页面，任务处于 Review Ready，导出前仍需人工审批" width="1600" height="900" loading="eager" />
-            </a>
-            <div class="card-content">
-              <div class="card-topline"><span class="status status-mock">公开 Lite Mock</span><span>07</span></div>
-              <h3 id="short-video-title">Short Video Studio Lite</h3>
-              <p class="outcome">9 状态流程 + 导出前人工审批门禁。</p>
-              <p class="boundary">公开版使用 mock provider；截图证明 Review Ready 与 approval pending 门禁，不含付费 Provider、自动发布或客户数据。</p>
-              <a class="source-link" href="https://github.com/galanime/short-video-studio-lite" target="_blank" rel="noopener noreferrer">公开仓库 ↗</a>
-            </div>
-          </article>
-        </div>
+        <footer class="sheet-footer"><span>张恒玮 · AI 产品经理作品集</span><span>01 / 08</span></footer>
       </section>
 
-      <footer class="footer">
-        <p>张恒玮 · 2027届 AI 产品经理 / 技术产品经理</p>
-        <p>证据优先 · 事实与截图边界分开标注 · 可使用浏览器“打印”保存 A4 横版</p>
-      </footer>
+      <section class="sheet case-sheet" id="case-01" tabindex="-1" aria-labelledby="case-01-title">
+        <div class="sheet-content">
+          <header class="case-header">
+            <div>
+              <p class="section-number">CASE 01 · PUBLIC REDACTED DEMO</p>
+              <h2 id="case-01-title">闲鱼 AI 客服 Agent</h2>
+              <p class="case-subtitle">商家客服自动化 · 产品负责人兼独立开发者 · 2026.03–2026.05</p>
+            </div>
+            <span class="status status-public">公开脱敏 Demo</span>
+          </header>
+
+          <figure class="evidence-figure">
+            <a href="assets/xianyu-agent-runtime.jpg" target="_blank" rel="noopener noreferrer">
+              <img src="assets/xianyu-agent-runtime.jpg" alt="闲鱼 AI 客服 Agent 公开脱敏运行页面，展示回复生成、订单接管与人工审核流程" width="1600" height="900" />
+            </a>
+            <figcaption>运行证据：回复生成、草稿填入、订单接管与人工审核链路。</figcaption>
+          </figure>
+
+          <div class="case-summary">
+            <section class="result-panel">
+              <p class="panel-label">VERIFIED OUTCOME</p>
+              <strong>4 家商家真实使用，1 家购买后续迭代服务。</strong>
+              <p>线上 3 家、北京线下 1 家完成真实使用验证。</p>
+            </section>
+            <section class="case-panel">
+              <h3>产品机制与取舍</h3>
+              <ul>
+                <li>规则与 SQLite 管理价格、押金、库存等业务事实，大模型只负责受约束的理解与表达。</li>
+                <li>覆盖自动生成回复、草稿填入、库存与日历更新；发送机制从人工审核逐步演进到双门禁约束的自动发送。</li>
+                <li>核心取舍是提升响应效率，同时避免模型误承诺价格、档期与交易条件。</li>
+              </ul>
+            </section>
+            <aside class="boundary-panel">
+              <p class="panel-label">EVIDENCE BOUNDARY</p>
+              <p>本次公开页不连接真实账号、Cookie、ADB 或外部日历；截图证明受约束客服工作流，不证明真实消息桥接与线上自动发送。</p>
+              <a class="source-link" href="https://github.com/galanime/xianyu-ai-customer-service-agent" target="_blank" rel="noopener noreferrer">查看公开仓库 ↗</a>
+            </aside>
+          </div>
+        </div>
+        <footer class="sheet-footer"><a class="back-link" href="#page-title">返回目录 ↑</a><span>02 / 08</span></footer>
+      </section>
+
+      <section class="sheet case-sheet" id="case-02" tabindex="-1" aria-labelledby="case-02-title">
+        <div class="sheet-content">
+          <header class="case-header">
+            <div>
+              <p class="section-number">CASE 02 · CURRENT LOCAL RUNTIME</p>
+              <h2 id="case-02-title">星使智算 Demo2</h2>
+              <p class="case-subtitle">某 985 高校化学学院 AI4S 教育产品 · AI 产品经理实习生</p>
+            </div>
+            <span class="status status-live">当前本地运行</span>
+          </header>
+
+          <figure class="evidence-figure">
+            <a href="assets/demo2-molecular-lab.jpg" target="_blank" rel="noopener noreferrer">
+              <img src="assets/demo2-molecular-lab.jpg" alt="星使智算 Demo2 本地教学页面，展示分子三维可视化与 SchNet 学习链路" width="1600" height="900" />
+            </a>
+            <figcaption>运行证据：3D 分子 / 轨道可视化与 SchNet 教学链路。</figcaption>
+          </figure>
+
+          <div class="case-summary">
+            <section class="result-panel">
+              <p class="panel-label">DELIVERY RESULT</p>
+              <strong>2 个核心方案 · 3 份 PRD · 2 轮版本迭代。</strong>
+              <p>从 Figma 原型推进至可运行 MVP。</p>
+            </section>
+            <section class="case-panel">
+              <h3>从模型能力到产品交互</h3>
+              <ul>
+                <li>通过用户访谈、需求分析与竞品调研，将 MLP、SchNet、分子属性预测抽象为“知识讲解—模型可视化—代码练习—AI 纠错”的学习链路。</li>
+                <li>设计 System Prompt、上下文交互、流式输出、代码诊断、修改建议与 Diff 能力。</li>
+                <li>用 Codex / Claude 辅助完成原型到可运行 MVP，并接入真实 PyTorch 训练与模型预测路径。</li>
+              </ul>
+            </section>
+            <aside class="boundary-panel">
+              <p class="panel-label">EVIDENCE BOUNDARY</p>
+              <p>截图证明教学页面、3D 可视化与 SchNet 学习链路；当前画面不外推为本次训练已完成或模型效果结论。</p>
+              <span class="source-note">AI4S 教学产品交付</span>
+            </aside>
+          </div>
+        </div>
+        <footer class="sheet-footer"><a class="back-link" href="#page-title">返回目录 ↑</a><span>03 / 08</span></footer>
+      </section>
+
+      <section class="sheet case-sheet" id="case-03" tabindex="-1" aria-labelledby="case-03-title">
+        <div class="sheet-content">
+          <header class="case-header">
+            <div>
+              <p class="section-number">CASE 03 · DETERMINISTIC DEMO</p>
+              <h2 id="case-03-title">CareerPilot</h2>
+              <p class="case-subtitle">求职决策 Agent · 工具调用、Provider 切换与可追踪产物</p>
+            </div>
+            <span class="status status-deterministic">确定性演示</span>
+          </header>
+
+          <figure class="evidence-figure">
+            <a href="assets/careerpilot-baidu-run.jpg" target="_blank" rel="noopener noreferrer">
+              <img src="assets/careerpilot-baidu-run.jpg" alt="CareerPilot 确定性演示页面，展示岗位输入、工具调用与可追踪结果" width="1600" height="900" />
+            </a>
+            <figcaption>运行证据：岗位输入、Agent 调用、评分结果与 Trace / Artifacts。</figcaption>
+          </figure>
+
+          <div class="case-summary">
+            <section class="result-panel">
+              <p class="panel-label">PRODUCT SURFACE</p>
+              <strong>8 个工具 · 4 路 Provider · Trace 与 Artifacts。</strong>
+              <p>把求职判断从单轮对话变成可复核流程。</p>
+            </section>
+            <section class="case-panel">
+              <h3>Agent 产品闭环</h3>
+              <ul>
+                <li>通过 JSON Schema 注册工具，让岗位解析、候选人事实、匹配判断与材料输出进入统一运行时。</li>
+                <li>保留 Provider 切换、失败降级、Trace 回放与产物归档，支持复核结果从哪里产生。</li>
+                <li>演示侧优先保证确定性和可解释性，不把一次模型输出包装成招聘结论。</li>
+              </ul>
+            </section>
+            <aside class="boundary-panel">
+              <p class="panel-label">EVIDENCE BOUNDARY</p>
+              <p>百度 JD 仅作为本地演示输入；Fake Provider、95/100 与 100% 只属于该固定样本，不代表百度官方评分或真实招聘判断。</p>
+              <a class="source-link" href="https://github.com/galanime/Careerpilot-agent" target="_blank" rel="noopener noreferrer">查看公开仓库 ↗</a>
+            </aside>
+          </div>
+        </div>
+        <footer class="sheet-footer"><a class="back-link" href="#page-title">返回目录 ↑</a><span>04 / 08</span></footer>
+      </section>
+
+      <section class="sheet case-sheet" id="case-04" tabindex="-1" aria-labelledby="case-04-title">
+        <div class="sheet-content">
+          <header class="case-header">
+            <div>
+              <p class="section-number">CASE 04 · PUBLIC MOCK MINI PROGRAM</p>
+              <h2 id="case-04-title">北京灰虎研题教育</h2>
+              <p class="case-subtitle">ToB 教育产品负责人 · 三角色小程序 + AI 运营助手</p>
+            </div>
+            <span class="status status-live">公开 Mock 小程序</span>
+          </header>
+
+          <figure class="evidence-figure evidence-figure-contain">
+            <a href="assets/huihu-student-entry-runtime.png" target="_blank" rel="noopener noreferrer">
+              <img src="assets/huihu-student-entry-runtime.png" alt="北京灰虎研题教育公开 Mock 小程序在微信开发者工具中的运行页面，展示目标院校选择与进入题库流程" width="780" height="1506" />
+            </a>
+            <figcaption>运行证据：微信开发者工具中的目标院校选择与进入题库流程。</figcaption>
+          </figure>
+
+          <div class="case-summary">
+            <section class="result-panel">
+              <p class="panel-label">DELIVERY RESULT</p>
+              <strong>公司一次性买断 · 覆盖 5 所院校约 5000 名学员。</strong>
+              <p>完成 PRD、Figma、联调上线与 2–3 轮迭代。</p>
+            </section>
+            <section class="case-panel">
+              <h3>三角色产品闭环</h3>
+              <ul>
+                <li>围绕学员、教师、运营三类角色梳理业务流程，建立“题目—知识点—问答”的关联体系。</li>
+                <li>从需求调研、功能定义和高保真原型推进到接口联调与上线迭代。</li>
+                <li>AI 运营助手承接内容获客后的咨询与答疑，并以人工判断和失败兜底控制内容风险。</li>
+              </ul>
+            </section>
+            <aside class="boundary-panel">
+              <p class="panel-label">EVIDENCE BOUNDARY</p>
+              <p>公开仓库使用本地 Mock 数据，不发起支付或上传信息；截图证明公开演示版入口流程，不据此证明原商业版本全部功能。</p>
+              <a class="source-link" href="https://github.com/galanime/huihu-kaoyan-miniapp-public" target="_blank" rel="noopener noreferrer">查看公开仓库 ↗</a>
+            </aside>
+          </div>
+        </div>
+        <footer class="sheet-footer"><a class="back-link" href="#page-title">返回目录 ↑</a><span>05 / 08</span></footer>
+      </section>
+
+      <section class="sheet case-sheet" id="case-05" tabindex="-1" aria-labelledby="case-05-title">
+        <div class="sheet-content">
+          <header class="case-header">
+            <div>
+              <p class="section-number">CASE 05 · LOCAL MOCK RUNTIME</p>
+              <h2 id="case-05-title">LifeHelper</h2>
+              <p class="case-subtitle">多 Agent 任务规划 · DAG 编排、Trace 回放与人工评估</p>
+            </div>
+            <span class="status status-mock">本地 mock 运行</span>
+          </header>
+
+          <figure class="evidence-figure evidence-figure-contain">
+            <a href="assets/lifehelper-runtime.jpg" target="_blank" rel="noopener noreferrer">
+              <img src="assets/lifehelper-runtime.jpg" alt="LifeHelper 本地 mock 运行页面，展示任务 DAG、Trace 与人工评分" width="1440" height="1800" />
+            </a>
+            <figcaption>运行证据：任务拆解、节点执行、Trace 回放与人工评分界面。</figcaption>
+          </figure>
+
+          <div class="case-summary">
+            <section class="result-panel">
+              <p class="panel-label">PRODUCT SURFACE</p>
+              <strong>DAG 编排 · Trace 回放 · 人工评分。</strong>
+              <p>为 Agent 结果补充可观察、可检查的评估路径。</p>
+            </section>
+            <section class="case-panel">
+              <h3>可观测 Agent 流程</h3>
+              <ul>
+                <li>将复杂意图拆分为任务节点，通过工具调用和结果聚合形成可追踪执行链。</li>
+                <li>保留节点状态、Trace 与产物证据，支持从最终答案回看中间步骤。</li>
+                <li>以人工评分面板承接质量复核，不用单一自动分数替代真实判断。</li>
+              </ul>
+            </section>
+            <aside class="boundary-panel">
+              <p class="panel-label">EVIDENCE BOUNDARY</p>
+              <p>当前运行使用 mock LLM、搜索、天气与地图；评分只对应本地演示样本，不是线上用户指标。</p>
+              <a class="source-link" href="https://github.com/galanime/LifeHelper" target="_blank" rel="noopener noreferrer">查看公开仓库 ↗</a>
+            </aside>
+          </div>
+        </div>
+        <footer class="sheet-footer"><a class="back-link" href="#page-title">返回目录 ↑</a><span>06 / 08</span></footer>
+      </section>
+
+      <section class="sheet case-sheet" id="case-06" tabindex="-1" aria-labelledby="case-06-title">
+        <div class="sheet-content">
+          <header class="case-header">
+            <div>
+              <p class="section-number">CASE 06 · PUBLIC REDACTED RECONSTRUCTION</p>
+              <h2 id="case-06-title">Chart Agent</h2>
+              <p class="case-subtitle">芯片验证场景 · PDF 图题识别、CSV 语义匹配与模板出图</p>
+            </div>
+            <span class="status status-reconstruction">公开脱敏复现</span>
+          </header>
+
+          <figure class="evidence-figure">
+            <a href="assets/chart-agent-public-runtime.jpg" target="_blank" rel="noopener noreferrer">
+              <img src="assets/chart-agent-public-runtime.jpg" alt="Chart Agent 公开脱敏复现页面，展示示例 PDF 与 CSV 语义匹配、人工确认、SVG 预览和审计产物" width="1440" height="900" />
+            </a>
+            <figcaption>运行证据：公开样例中的语义匹配、人工确认、SVG 预览与审计产物。</figcaption>
+          </figure>
+
+          <div class="case-summary">
+            <section class="result-panel">
+              <p class="panel-label">INTERNAL DELIVERY RESULT</p>
+              <strong>单图处理由约 30 分钟缩短至约 2 分钟。</strong>
+              <p>3 个月内独立交付 5 个软件产品 / 工具。</p>
+            </section>
+            <section class="case-panel">
+              <h3>低置信度拒绝与审计</h3>
+              <ul>
+                <li>拆分 PDF 图题识别、CSV 语义匹配、模板出图与审计清单，避免单个大模型步骤吞掉全部责任。</li>
+                <li>以置信度阈值拒绝低可信生成，将不确定结果交给人工确认。</li>
+                <li>采用端侧方案守住数据不出内网的安全边界，并保留可追溯产物。</li>
+              </ul>
+            </section>
+            <aside class="boundary-panel boundary-panel-strong">
+              <p class="panel-label">STRICT EVIDENCE BOUNDARY</p>
+              <p>公开页是按已验证流程制作的脱敏复现，非内部源码或真实业务数据，不证明内部交付版本 UI。</p>
+              <a class="source-link" href="demos/chart-agent-public/" target="_blank" rel="noopener noreferrer">运行公开复现 ↗</a>
+            </aside>
+          </div>
+        </div>
+        <footer class="sheet-footer"><a class="back-link" href="#page-title">返回目录 ↑</a><span>07 / 08</span></footer>
+      </section>
+
+      <section class="sheet case-sheet" id="case-07" tabindex="-1" aria-labelledby="case-07-title">
+        <div class="sheet-content">
+          <header class="case-header">
+            <div>
+              <p class="section-number">CASE 07 · PUBLIC LITE MOCK</p>
+              <h2 id="case-07-title">Short Video Studio Lite</h2>
+              <p class="case-subtitle">内容生产状态机 · 导出前人工审批门禁</p>
+            </div>
+            <span class="status status-mock">公开 Lite Mock</span>
+          </header>
+
+          <figure class="evidence-figure">
+            <a href="assets/short-video-review-ready.png" target="_blank" rel="noopener noreferrer">
+              <img src="assets/short-video-review-ready.png" alt="Short Video Studio Lite 公开 Lite Mock 页面，任务处于 Review Ready，导出前仍需人工审批" width="1600" height="900" />
+            </a>
+            <figcaption>运行证据：任务进入 Review Ready，但导出仍处于 approval pending。</figcaption>
+          </figure>
+
+          <div class="case-summary">
+            <section class="result-panel">
+              <p class="panel-label">PRODUCT CONTROL</p>
+              <strong>9 状态流程 + 导出前人工审批门禁。</strong>
+              <p>把内容生产过程从“生成即发布”改为可回退的状态机。</p>
+            </section>
+            <section class="case-panel">
+              <h3>状态与能力边界</h3>
+              <ul>
+                <li>以状态机管理素材、脚本、生成、复核与导出，显式呈现当前任务所处阶段。</li>
+                <li>Review Ready 不等于允许导出；必须通过人工审批门禁才能进入后续动作。</li>
+                <li>通过 Lite / Pro 能力边界区分公开演示与外部 Provider 能力，避免界面暗示未接入功能。</li>
+              </ul>
+            </section>
+            <aside class="boundary-panel">
+              <p class="panel-label">EVIDENCE BOUNDARY</p>
+              <p>公开版使用 mock provider；截图证明 Review Ready 与 approval pending 门禁，不含付费 Provider、自动发布或客户数据。</p>
+              <a class="source-link" href="https://github.com/galanime/short-video-studio-lite" target="_blank" rel="noopener noreferrer">查看公开仓库 ↗</a>
+            </aside>
+          </div>
+        </div>
+        <footer class="sheet-footer"><a class="back-link" href="#page-title">返回目录 ↑</a><span>08 / 08</span></footer>
+      </section>
     </main>
+
     <script>
       document.querySelector(".skip-link").addEventListener("click", () => {
-        requestAnimationFrame(() => document.getElementById("project-board").focus());
+        requestAnimationFrame(() => document.getElementById("case-01").focus());
       });
     </script>
   </body>
