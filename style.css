@@ -92,3 +92,4 @@ body{background:var(--bg);color:var(--fg);line-height:1.65}.header{height:82px;b
 /* Covers show a readable viewport; the lightbox keeps the full original image. */
 .case-cover figure img{object-fit:cover;object-position:top}.case-cover figure img[src$='.svg']{object-fit:contain;object-position:center}
 .orbit-shot:focus-visible{animation-play-state:paused}
+@media(max-width:760px){.hero-actions{gap:10px}.hero-actions .button{white-space:nowrap;gap:9px;padding:14px 13px;font-size:13px;min-height:52px}.hero-actions .ui-icon{flex-shrink:0}}
