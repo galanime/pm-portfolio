@@ -102,7 +102,7 @@ function showImage(index) {
   if (dialog.open && !paused && !reduced.matches) largeImage.animate([{ opacity: .2, transform: 'scale(.975)' }, { opacity: 1, transform: 'scale(1)' }], { duration: 260, easing: 'ease-out' });
   caption.textContent = `${activeIndex + 1} / ${imageEntries.length} · ${figure.querySelector('figcaption')?.textContent || image.alt}`;
 }
-document.querySelectorAll('.project-media figure, .gallery figure').forEach(figure => {
+document.querySelectorAll('.project figure, .gallery figure').forEach(figure => {
   const image = figure.querySelector('img');
   const button = document.createElement('button');
   const index = imageEntries.length;
@@ -283,3 +283,13 @@ if (signalContext) {
   heroSurface.addEventListener('pointermove',event=>{if(!finePointer.matches)return;const rect=heroSurface.getBoundingClientRect();pointer={x:event.clientX-rect.left,y:event.clientY-rect.top};});
   heroSurface.addEventListener('pointerleave',()=>{pointer={x:-1000,y:-1000};});
 }
+
+// Each orbit thumbnail remains a direct, keyboard-accessible route to its case.
+document.querySelectorAll('.orbit-shot').forEach(link => link.addEventListener('click', () => filterProjects('all')));
+const cinematicHeader = document.querySelector('.header');
+let headerTick = false;
+addEventListener('scroll', () => {
+  if (headerTick) return;
+  headerTick = true;
+  requestAnimationFrame(() => {cinematicHeader.classList.toggle('is-scrolled', scrollY > 70);headerTick = false;});
+}, {passive:true});
