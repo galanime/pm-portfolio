@@ -108,3 +108,13 @@ body{background:var(--bg);color:var(--fg);line-height:1.65}.header{height:82px;b
 @media(max-width:1050px) and (min-width:761px){.hero .portrait-stage{gap:22px 12px}.hero .portrait-frame{width:62%}.hero .orbit-shot,.hero .hero-preview.orbit-shot{width:86%!important}}
 @media(max-width:760px){.hero .portrait-stage{width:94%;max-width:380px;height:auto;gap:24px 12px;margin:24px auto 20px}.hero .portrait-frame{width:63%}.hero .orbit-shot,.hero .hero-preview.orbit-shot{width:84%!important}.hero .orbit-shot>span{padding:7px 3px 3px;font-size:10px}}
 @media print{.hero .portrait-stage{display:block}.hero .portrait-frame{width:220px;margin:auto}}
+
+/* One continuous blue atmosphere, always behind the portfolio. */
+body{position:relative;isolation:isolate}
+.page-atmosphere{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;background:radial-gradient(ellipse at 84% 28%,#b9d8ff8c,transparent 60%),radial-gradient(ellipse at 8% 78%,#ceefff80,transparent 55%),#f7faff}
+.atmosphere-canvas{display:block;width:100%;height:100%}
+.hero .hero-grid{background:linear-gradient(90deg,#f7faff45,#f7faff05);animation:none}
+.hero .hero-grid:after{display:none}
+.contact-section{background:linear-gradient(125deg,#eaf4ffbb,#f3f8ffbb)}
+@media(prefers-reduced-motion:reduce){.atmosphere-canvas{display:none}}
+@media print{.page-atmosphere{display:none}}

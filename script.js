@@ -246,39 +246,6 @@ stageTabs.forEach((button,i) => {
   });
 });
 document.querySelector('.next-stage').addEventListener('click',()=>selectStage(currentStage+1));
-// A quiet signal field responds to the pointer and sleeps while off-screen.
-const signalCanvas = document.querySelector('.signal-canvas');
-const signalContext = signalCanvas.getContext('2d');
-if (signalContext) {
-  const heroSurface = document.querySelector('.hero');
-  let width=0,height=0,points=[],visible=true,signalFrame=0,lastPaint=0;
-  let pointer={x:-1000,y:-1000};
-  function sizeSignals(){
-    const rect=heroSurface.getBoundingClientRect();width=rect.width;height=rect.height;
-    const scale=Math.min(devicePixelRatio||1,1.5);signalCanvas.width=width*scale;signalCanvas.height=height*scale;signalContext.setTransform(scale,0,0,scale,0,0);
-    const count=width<700?22:44;
-    points=Array.from({length:count},(_,i)=>({x:((i*137.51)%997)/997*width,y:((i*251.31)%991)/991*height,phase:i*1.4}));
-  }
-  function paintSignals(time){
-    signalFrame=0;
-    if(!visible||paused||reduced.matches) return;
-    if(time-lastPaint>32){
-      lastPaint=time;signalContext.clearRect(0,0,width,height);
-      const dots=points.map(p=>{let x=p.x+Math.sin(time*.00022+p.phase)*13,y=p.y+Math.cos(time*.00018+p.phase)*13;const dx=x-pointer.x,dy=y-pointer.y,d=Math.hypot(dx,dy);if(d<125&&d>0){x+=dx/d*(125-d)*.13;y+=dy/d*(125-d)*.13;}return{x,y};});
-      dots.forEach((p,i)=>{for(let j=i+1;j<dots.length;j++){const q=dots[j],d=Math.hypot(p.x-q.x,p.y-q.y);if(d<140){signalContext.strokeStyle=`rgba(74,133,213,${(1-d/140)*.16})`;signalContext.lineWidth=.7;signalContext.beginPath();signalContext.moveTo(p.x,p.y);signalContext.lineTo(q.x,q.y);signalContext.stroke();}}signalContext.fillStyle='rgba(73,132,216,.29)';signalContext.beginPath();signalContext.arc(p.x,p.y,1.4,0,Math.PI*2);signalContext.fill();});
-    }
-    signalFrame=requestAnimationFrame(paintSignals);
-  }
-  function resumeSignals(){cancelAnimationFrame(signalFrame);signalFrame=0;if(visible&&!paused&&!reduced.matches)signalFrame=requestAnimationFrame(paintSignals);else signalContext.clearRect(0,0,width,height);}
-  sizeSignals();resumeSignals();
-  addEventListener('resize',()=>{sizeSignals();resumeSignals();});
-  document.addEventListener('portfolio-motion',resumeSignals);
-  document.addEventListener('visibilitychange',()=>{visible=!document.hidden;resumeSignals();});
-  if('IntersectionObserver' in window)new IntersectionObserver(entries=>{visible=entries[0].isIntersecting&&!document.hidden;resumeSignals();}).observe(heroSurface);
-  heroSurface.addEventListener('pointermove',event=>{if(!finePointer.matches)return;const rect=heroSurface.getBoundingClientRect();pointer={x:event.clientX-rect.left,y:event.clientY-rect.top};});
-  heroSurface.addEventListener('pointerleave',()=>{pointer={x:-1000,y:-1000};});
-}
-
 // Each orbit thumbnail remains a direct, keyboard-accessible route to its case.
 document.querySelectorAll('.orbit-shot').forEach(link => link.addEventListener('click', () => filterProjects('all')));
 const cinematicHeader = document.querySelector('.header');
@@ -288,3 +255,110 @@ addEventListener('scroll', () => {
   headerTick = true;
   requestAnimationFrame(() => {cinematicHeader.classList.toggle('is-scrolled', scrollY > 70);headerTick = false;});
 }, {passive:true});
+
+// Viewport-sized light field: no external assets, no controls, no input interception.
+(() => {
+  const canvas = document.querySelector('.atmosphere-canvas');
+  const ctx = canvas?.getContext('2d', {alpha:true});
+  if (!ctx) return;
+  let width=0, height=0, frame=0, last=0, clock=0, compact=false;
+  let progress=0, targetProgress=0, ripples=[];
+  const pointer={x:.72,y:.35,tx:.72,ty:.35,active:false};
+  const tau=Math.PI*2;
+  function resize() {
+    width=innerWidth; height=innerHeight; compact=width<760;
+    const scale=Math.min(devicePixelRatio||1,compact?1:1.25,Math.sqrt(1800000/(width*height)));
+    canvas.width=Math.round(width*scale); canvas.height=Math.round(height*scale);
+    ctx.setTransform(scale,0,0,scale,0,0);
+    targetProgress=scrollY/Math.max(1,root.scrollHeight-height);
+    draw();
+  }
+  function glow(x,y,radius,color,strength) {
+    const wash=ctx.createRadialGradient(x,y,0,x,y,radius);
+    wash.addColorStop(0,`rgba(${color},${strength})`);
+    wash.addColorStop(.48,`rgba(${color},${strength*.42})`);
+    wash.addColorStop(1,`rgba(${color},0)`);
+    ctx.fillStyle=wash;ctx.fillRect(0,0,width,height);
+  }
+  function ribbon(lane,offset) {
+    const phase=clock*.14+lane*1.7+progress*2.1;
+    const y=height*(.35+lane*.24)+offset;
+    ctx.beginPath();
+    ctx.moveTo(-width*.18,y+Math.sin(phase)*height*.16);
+    ctx.bezierCurveTo(width*.22,y-height*(.30+Math.sin(phase*.8)*.08),width*.47,y+height*(.34+Math.cos(phase)*.12),width*1.18,y-height*.22);
+  }
+  function draw() {
+    ctx.clearRect(0,0,width,height);
+    const drift=clock*.12+progress*2;
+    glow(width*(.76+Math.sin(drift)*.14),height*(.28+Math.cos(drift*.77)*.12),Math.max(width*.52,height*.7),'113,172,255',.19);
+    glow(width*(.15+Math.cos(drift*.6)*.1),height*(.76+Math.sin(drift*.7)*.14),Math.max(width*.4,height*.6),'110,209,246',.13);
+    glow(pointer.x*width,pointer.y*height,Math.min(width,height)*.43,'124,178,255',pointer.active?.15:.07);
+    // Parallel filaments describe the same slow current, with clear space over content.
+    const strands=compact?7:12;
+    for(let lane=0;lane<2;lane++) {
+      const light=ctx.createLinearGradient(0,0,width,height);
+      light.addColorStop(0,'rgba(112,173,248,0)');
+      light.addColorStop(.25,'rgba(77,146,238,.07)');
+      light.addColorStop(.72,'rgba(61,128,229,.20)');
+      light.addColorStop(1,'rgba(137,197,254,0)');
+      ctx.strokeStyle=light;
+      ribbon(lane,0);ctx.globalAlpha=.14;ctx.lineWidth=38;ctx.stroke();
+      ctx.globalAlpha=1;ctx.lineWidth=.8;
+      for(let n=0;n<strands;n++) {ribbon(lane,(n-strands/2)*(compact?7:9));ctx.stroke();}
+    }
+    // Small points drift without expensive all-to-all connections.
+    const count=compact?24:48;
+    for(let i=0;i<count;i++) {
+      const phase=i*2.39996;
+      const x=((i*173.31)%997)/997*width+Math.sin(clock*.12+phase)*18;
+      const y=((i*239.71)%991)/991*height+Math.cos(clock*.1+phase)*22;
+      const alpha=.12+(Math.sin(clock*.35+phase)+1)*.055;
+      ctx.fillStyle=`rgba(63,128,218,${alpha})`;
+      ctx.beginPath();ctx.arc(x,y,i%7===0?1.8:1,0,tau);ctx.fill();
+      if(i%9===0) {ctx.strokeStyle=`rgba(74,142,227,${alpha*.6})`;ctx.lineWidth=.7;ctx.beginPath();ctx.moveTo(x-4,y);ctx.lineTo(x+4,y);ctx.moveTo(x,y-4);ctx.lineTo(x,y+4);ctx.stroke();}
+    }
+    for(const ripple of ripples) {
+      const age=clock-ripple.born;
+      for(let i=0;i<2;i++) {
+        const t=(age-i*.2)/2.4;
+        if(t<0||t>1)continue;
+        ctx.strokeStyle=`rgba(76,145,235,${(1-t)*.25})`;ctx.lineWidth=1.2-t*.7;
+        ctx.beginPath();ctx.arc(ripple.x*width,ripple.y*height,12+(1-Math.pow(1-t,3))*160,0,tau);ctx.stroke();
+      }
+    }
+  }
+  function tick(now) {
+    frame=0;
+    if(document.hidden||paused||reduced.matches)return;
+    const interval=compact?42:33;
+    if(!last)last=now-interval;
+    if(now-last>=interval) {
+      const dt=Math.min((now-last)/1000,.08);last=now;clock+=dt;
+      const ease=1-Math.exp(-dt*3);
+      pointer.x+=(pointer.tx-pointer.x)*ease;pointer.y+=(pointer.ty-pointer.y)*ease;
+      progress+=(targetProgress-progress)*ease;
+      ripples=ripples.filter(r=>clock-r.born<2.7);
+      draw();
+    }
+    frame=requestAnimationFrame(tick);
+  }
+  function sync() {
+    cancelAnimationFrame(frame);frame=0;last=0;
+    if(!document.hidden&&!paused&&!reduced.matches)frame=requestAnimationFrame(tick);
+  }
+  addEventListener('resize',()=>{resize();sync();},{passive:true});
+  addEventListener('scroll',()=>{targetProgress=scrollY/Math.max(1,root.scrollHeight-height);},{passive:true});
+  document.addEventListener('pointermove',event=>{
+    if(!finePointer.matches||paused||reduced.matches)return;
+    pointer.tx=event.clientX/width;pointer.ty=event.clientY/height;pointer.active=true;
+  },{passive:true});
+  document.addEventListener('pointerleave',()=>{pointer.active=false;pointer.tx=.72;pointer.ty=.35;});
+  document.addEventListener('pointerdown',event=>{
+    if(paused||reduced.matches||document.hidden)return;
+    ripples.push({x:event.clientX/width,y:event.clientY/height,born:clock});
+    if(ripples.length>4)ripples.shift();
+  },{passive:true});
+  document.addEventListener('visibilitychange',sync);
+  document.addEventListener('portfolio-motion',sync);
+  resize();sync();
+})();
