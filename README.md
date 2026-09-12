@@ -1,45 +1,39 @@
 # 张恒玮 · AI 产品经理作品集
 
-面向 AI 产品经理 / AI 产品运营 / AIGC 产品实习求职的**产品视角**单页作品集，与工程视角作品集 [`personal-portfolio`](../personal-portfolio/) 互补。
+蓝白主题的个人作品集，使用原生 HTML、CSS 和 JavaScript。无需构建、付费组件或第三方脚本。
 
-## 与工程师版的区别
+## 内容
 
-| 维度 | 工程师版 (personal-portfolio) | 产品经理版 (pm-portfolio) |
-|------|------|------|
-| 定位 | AI Agent Engineer | AI 产品经理 |
-| 叙事 | 技术实现、架构、测试 | 痛点、方案、设计决策、指标 |
-| 项目结构 | 项目 + 技术栈 bullet | 痛点 → 方案 → 关键决策 → 验证成果 |
-| 强调色 | 青色 (#64ffda) | 琥珀 (#f5a623) |
-| 简历 | resume.pdf | resume-pm.pdf |
+- 个人肖像、北邮硕士身份、中共党员及党支部书记经历。
+- 8 个案例：AsterFire Edu、考研题库、Career OS、内容工作流、AI 客服、短视频创作、AI 生活助手、用户问题闭环。
+- 保留原首页 6 个项目的内容及全部 8 张截图/流程图；额外使用仓库已有的产品画面。
+- 北邮硕士与山东科技大学本科教育经历。专业、时间和教育表现来自仓库原有 `resume-pm.pdf`。
+- 项目分类、可展开案例、支持键盘操作的图片灯箱、移动导航、复制邮箱、滚动进度、可关闭动效。
 
-## 内容结构
+## 本地运行
 
-- Hero：定位"会做 Demo 的 AI 产品经理"
-- 01 About：产品方法论（痛点驱动 / 可解释流程 / 数据指标 / 动手验证）
-- 02 产品案例：4 个案例，每个按 `痛点 / 方案 / 关键设计决策 / 验证与成果` 展开
-  - AI 短视频创作工具
-  - AI 运营助手（人机协同）
-  - AI 生活助手（指标与评估体系）
-  - 考研题库学习产品（多角色流程）
-- 03 能力矩阵：产品核心 / AI 认知 / 产品工具 / 技术理解力
-- 04 Contact：下载产品简历 PDF + GitHub
-
-## 简历来源
-
-`resume-pm.pdf` 由 `job-hunt-kb` 的 `ai_product_manager` 岗位画像生成：
-
-```powershell
-cd job-hunt-kb
-job-hunt-kb.bat generate --jd-file examples/jds/ai_product_manager_bigtech.txt --role ai_product_manager --company ByteDance --job-title "AI 产品经理实习生" --latex
+```bash
+python -m http.server 8080
 ```
 
-## 本地预览
+访问 `http://localhost:8080/`。现有 GitHub Pages 结构保持兼容：`index.html` 位于根目录。
 
-```powershell
-py -m http.server 8000
-# 打开 http://localhost:8000
-```
+## 素材与事实来源
 
-## 部署
+- 用户提供个人肖像：`assets/hengwei-portrait.jpeg`。
+- 北邮官方校徽与校名：https://vi.bupt.edu.cn/images/logo1.png
+- 北邮视觉规范：https://vi.bupt.edu.cn/jcxt/xhgf.htm
+- 山科官方校徽组合图：https://www.sdust.edu.cn/images/logo.png
+- 校徽原文件保持完整，教育卡片以 CSS 裁切展示校徽区域，不重绘或改变颜色。
+- AsterFire Edu 与 Career OS 的功能边界按用户授权读取的当前项目 README 核对；不链接私有仓库，不复制内部文档。
+- 原截图保留原有语境；AsterFire 截图标注为迭代记录，Career OS 使用明确标注的工作流设计示意。
+- 设计层次参考：https://brittanychiang.com/ 与 https://www.apple.com/macbook-pro/
 
-GitHub Pages：作为独立仓库 push，开启 Pages（branch=main, path=/）。
+## 验证
+
+- JavaScript 语法校验。
+- 原有图片保留、8 个案例计数、资源存在性、页面锚点及唯一 ID 校验。
+- `prefers-reduced-motion` 与页面动效开关均能关闭非必要动画；图片支持原生模态框、Esc 关闭及左右切换。
+- 页面无运行时第三方字体、分析脚本或收费 API 依赖。
+
+当前改版提交于 `redesign/portrait-portfolio`，由 PR #1 审阅，未自动合并至主分支。
