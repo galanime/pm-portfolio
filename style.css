@@ -89,3 +89,6 @@ body{background:var(--bg);color:var(--fg);line-height:1.65}.header{height:82px;b
 .motion-paused *,.motion-paused *:before,.motion-paused *:after{animation:none!important;transition:none!important}.motion-paused .orbit-shot{translate:none!important}
 @media print{.orbit-shot,.orbit-ring{display:none!important}.project>details .case-body{display:block}.project-media figure img{height:200px}.project>details{grid-column:1/-1}.project,.project.featured{display:block}.portrait-frame{position:relative}.hero .portrait-stage{height:300px}}
 .generated-artifact img{object-fit:cover;object-position:top}.generated-artifact figcaption strong{font-size:16px;color:#2c5b99}.generated-artifact figcaption p{margin:8px 0;font-size:13px;line-height:1.7}.generated-artifact figcaption a{color:#2468d5}.hero-actions .ui-icon{width:18px;height:18px;margin-right:0}
+/* Covers show a readable viewport; the lightbox keeps the full original image. */
+.case-cover figure img{object-fit:cover;object-position:top}.case-cover figure img[src$='.svg']{object-fit:contain;object-position:center}
+.orbit-shot:focus-visible{animation-play-state:paused}
