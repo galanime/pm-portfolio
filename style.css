@@ -93,3 +93,18 @@ body{background:var(--bg);color:var(--fg);line-height:1.65}.header{height:82px;b
 .case-cover figure img{object-fit:cover;object-position:top}.case-cover figure img[src$='.svg']{object-fit:contain;object-position:center}
 .orbit-shot:focus-visible{animation-play-state:paused}
 @media(max-width:760px){.hero-actions{gap:10px}.hero-actions .button{white-space:nowrap;gap:9px;padding:14px 13px;font-size:13px;min-height:52px}.hero-actions .ui-icon{flex-shrink:0}}
+
+/* Portrait and project previews occupy separate rows at every viewport size. */
+.hero .portrait-stage{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto auto;align-content:center;align-items:center;gap:26px 20px;height:auto;min-height:0;padding:16px 0;width:100%;max-width:500px;isolation:isolate}
+.hero .portrait-frame{position:relative;inset:auto;grid-column:1/-1;grid-row:2;width:55%;justify-self:center;z-index:10;margin:0;transform:rotate(1deg);padding:9px}
+.hero .orbit-shot,.hero .hero-preview.orbit-shot{position:relative;inset:auto!important;width:78%!important;margin:0;z-index:2;align-self:center}
+.hero .orbit-1{grid-column:1;grid-row:1;justify-self:start;--angle:-7deg}
+.hero .orbit-2{grid-column:2;grid-row:1;justify-self:end;--angle:7deg}
+.hero .orbit-3{grid-column:1;grid-row:3;justify-self:start;--angle:-6deg}
+.hero .orbit-4{grid-column:2;grid-row:3;justify-self:end;--angle:6deg}
+.hero .orbit-shot:hover,.hero .hero-preview.orbit-shot:hover{z-index:3;scale:1.055}
+.hero .orbit-ring{inset:16% 1%;z-index:0}
+.hero .portrait-caption{padding-top:12px;padding-bottom:4px}
+@media(max-width:1050px) and (min-width:761px){.hero .portrait-stage{gap:22px 12px}.hero .portrait-frame{width:62%}.hero .orbit-shot,.hero .hero-preview.orbit-shot{width:86%!important}}
+@media(max-width:760px){.hero .portrait-stage{width:94%;max-width:380px;height:auto;gap:24px 12px;margin:24px auto 20px}.hero .portrait-frame{width:63%}.hero .orbit-shot,.hero .hero-preview.orbit-shot{width:84%!important}.hero .orbit-shot>span{padding:7px 3px 3px;font-size:10px}}
+@media print{.hero .portrait-stage{display:block}.hero .portrait-frame{width:220px;margin:auto}}

@@ -1,22 +1,17 @@
 const root = document.documentElement;
 const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-const motionToggle = document.querySelector('.motion-toggle');
+// Respect the visitor's system accessibility preference without presentation controls.
 let paused = reduced.matches;
-try { paused = paused || localStorage.getItem('portfolio-motion') === 'paused'; } catch {}
 function setMotion(value) {
   paused = value;
   root.classList.toggle('motion-paused', value);
-  if (value) document.getAnimations().forEach(animation => { if (animation.effect?.getTiming().iterations !== Infinity && !(animation instanceof CSSAnimation) && !(animation instanceof CSSTransition)) animation.finish(); });
-  motionToggle.textContent = value ? '开启动效' : '暂停动效';
-  motionToggle.setAttribute('aria-pressed', String(value));
+  if (value) document.getAnimations().forEach(animation => {
+    if (animation.effect?.getTiming().iterations !== Infinity && !(animation instanceof CSSAnimation) && !(animation instanceof CSSTransition)) animation.finish();
+  });
   document.dispatchEvent(new Event('portfolio-motion'));
 }
 setMotion(paused);
-motionToggle.addEventListener('click', () => {
-  setMotion(!paused);
-  try { localStorage.setItem('portfolio-motion', paused ? 'paused' : 'playing'); } catch {}
-});
-reduced.addEventListener('change', event => { if (event.matches) setMotion(true); });
+reduced.addEventListener('change', event => setMotion(event.matches));
 if ('IntersectionObserver' in window) {
   root.classList.add('motion-ready');
   const reveal = new IntersectionObserver(entries => entries.forEach(entry => {
