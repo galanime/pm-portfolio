@@ -109,12 +109,27 @@ body{background:var(--bg);color:var(--fg);line-height:1.65}.header{height:82px;b
 @media(max-width:760px){.hero .portrait-stage{width:94%;max-width:380px;height:auto;gap:24px 12px;margin:24px auto 20px}.hero .portrait-frame{width:63%}.hero .orbit-shot,.hero .hero-preview.orbit-shot{width:84%!important}.hero .orbit-shot>span{padding:7px 3px 3px;font-size:10px}}
 @media print{.hero .portrait-stage{display:block}.hero .portrait-frame{width:220px;margin:auto}}
 
-/* One continuous blue atmosphere, always behind the portfolio. */
+/* A document-length landscape: the background travels with the page. */
 body{position:relative;isolation:isolate}
-.page-atmosphere{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;background:radial-gradient(ellipse at 84% 28%,#b9d8ff8c,transparent 60%),radial-gradient(ellipse at 8% 78%,#ceefff80,transparent 55%),#f7faff}
-.atmosphere-canvas{display:block;width:100%;height:100%}
-.hero .hero-grid{background:linear-gradient(90deg,#f7faff45,#f7faff05);animation:none}
-.hero .hero-grid:after{display:none}
-.contact-section{background:linear-gradient(125deg,#eaf4ffbb,#f3f8ffbb)}
-@media(prefers-reduced-motion:reduce){.atmosphere-canvas{display:none}}
+.page-atmosphere{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden;background:linear-gradient(180deg,#f6faff 0%,#f8f9ff 23%,#f2fbfd 47%,#f5f7ff 73%,#f5fbff 100%)}
+.journey-background{position:absolute;inset:0;display:block;width:100%;height:100%;overflow:visible}
+.journey-wash,.journey-ribbon,.journey-filaments path,.journey-progress{fill:none;stroke-linecap:round;stroke-linejoin:round}
+.journey-wash{stroke:url(#journey-colour);stroke-width:260;opacity:.38}
+.journey-ribbon{stroke:url(#journey-colour);stroke-width:112;opacity:.66}
+.journey-filaments{stroke:url(#journey-ink);stroke-width:1;opacity:.24}
+.journey-progress{stroke:#6f9ee1;stroke-width:2;stroke-dasharray:1;stroke-dashoffset:1;opacity:.42}
+.journey-landmarks{fill:none;stroke:#83ade3;stroke-width:1;opacity:.2}
+.journey-beacon{opacity:.65}.beacon-ring{fill:none;stroke:#8cb5ec;stroke-width:1;transform-origin:center;animation:beacon-breathe 4s ease-in-out infinite}
+.depth-orb{position:absolute;display:block;width:740px;height:820px;max-width:100vw;border-radius:50%;background:radial-gradient(ellipse,#b6d9fa65,transparent 68%);transform:translateY(var(--depth-shift,0px));will-change:transform}
+.orb-a{top:0;right:-160px;background:radial-gradient(ellipse,#c2d8ff85,transparent 68%)}
+.orb-b{top:19%;left:-280px;background:radial-gradient(ellipse,#b1e5f477,transparent 68%)}
+.orb-c{top:43%;right:-260px;background:radial-gradient(ellipse,#c5cffd77,transparent 68%)}
+.orb-d{top:65%;left:-220px;background:radial-gradient(ellipse,#bbe7f277,transparent 68%)}
+.orb-e{bottom:0;right:-100px;background:radial-gradient(ellipse,#c0d5ff85,transparent 68%)}
+.hero .hero-grid{background:linear-gradient(90deg,#f7faff35,#f7faff00);animation:none}.hero .hero-grid:after{display:none}
+.contact-section{background:linear-gradient(125deg,#eaf4ff99,#f3f8ff99)}
+@keyframes beacon-breathe{0%,100%{scale:.8;opacity:.4}50%{scale:1.25;opacity:.9}}
+@media(max-width:760px){.journey-wash{stroke-width:140;opacity:.32}.journey-ribbon{stroke-width:64;opacity:.5}.journey-filaments{opacity:.2}.depth-orb{width:430px;height:650px}.orb-a,.orb-c,.orb-e{right:-120px}.orb-b,.orb-d{left:-160px}}
+@media(prefers-reduced-motion:reduce){.depth-orb{transform:none!important}.journey-beacon{display:none}}
+.motion-paused .depth-orb{transform:none!important}.motion-paused .journey-beacon{display:none}
 @media print{.page-atmosphere{display:none}}

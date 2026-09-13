@@ -256,109 +256,63 @@ addEventListener('scroll', () => {
   requestAnimationFrame(() => {cinematicHeader.classList.toggle('is-scrolled', scrollY > 70);headerTick = false;});
 }, {passive:true});
 
-// Viewport-sized light field: no external assets, no controls, no input interception.
+// The winding landscape belongs to the document, so scrolling reveals new scenery.
 (() => {
-  const canvas = document.querySelector('.atmosphere-canvas');
-  const ctx = canvas?.getContext('2d', {alpha:true});
-  if (!ctx) return;
-  let width=0, height=0, frame=0, last=0, clock=0, compact=false;
-  let progress=0, targetProgress=0, ripples=[];
-  const pointer={x:.72,y:.35,tx:.72,ty:.35,active:false};
-  const tau=Math.PI*2;
-  function resize() {
-    width=innerWidth; height=innerHeight; compact=width<760;
-    const scale=Math.min(devicePixelRatio||1,compact?1:1.25,Math.sqrt(1800000/(width*height)));
-    canvas.width=Math.round(width*scale); canvas.height=Math.round(height*scale);
-    ctx.setTransform(scale,0,0,scale,0,0);
-    targetProgress=scrollY/Math.max(1,root.scrollHeight-height);
-    draw();
-  }
-  function glow(x,y,radius,color,strength) {
-    const wash=ctx.createRadialGradient(x,y,0,x,y,radius);
-    wash.addColorStop(0,`rgba(${color},${strength})`);
-    wash.addColorStop(.48,`rgba(${color},${strength*.42})`);
-    wash.addColorStop(1,`rgba(${color},0)`);
-    ctx.fillStyle=wash;ctx.fillRect(0,0,width,height);
-  }
-  function ribbon(lane,offset) {
-    const phase=clock*.14+lane*1.7+progress*2.1;
-    const y=height*(.35+lane*.24)+offset;
-    ctx.beginPath();
-    ctx.moveTo(-width*.18,y+Math.sin(phase)*height*.16);
-    ctx.bezierCurveTo(width*.22,y-height*(.30+Math.sin(phase*.8)*.08),width*.47,y+height*(.34+Math.cos(phase)*.12),width*1.18,y-height*.22);
-  }
-  function draw() {
-    ctx.clearRect(0,0,width,height);
-    const drift=clock*.12+progress*2;
-    glow(width*(.76+Math.sin(drift)*.14),height*(.28+Math.cos(drift*.77)*.12),Math.max(width*.52,height*.7),'113,172,255',.19);
-    glow(width*(.15+Math.cos(drift*.6)*.1),height*(.76+Math.sin(drift*.7)*.14),Math.max(width*.4,height*.6),'110,209,246',.13);
-    glow(pointer.x*width,pointer.y*height,Math.min(width,height)*.43,'124,178,255',pointer.active?.15:.07);
-    // Parallel filaments describe the same slow current, with clear space over content.
-    const strands=compact?7:12;
-    for(let lane=0;lane<2;lane++) {
-      const light=ctx.createLinearGradient(0,0,width,height);
-      light.addColorStop(0,'rgba(112,173,248,0)');
-      light.addColorStop(.25,'rgba(77,146,238,.07)');
-      light.addColorStop(.72,'rgba(61,128,229,.20)');
-      light.addColorStop(1,'rgba(137,197,254,0)');
-      ctx.strokeStyle=light;
-      ribbon(lane,0);ctx.globalAlpha=.14;ctx.lineWidth=38;ctx.stroke();
-      ctx.globalAlpha=1;ctx.lineWidth=.8;
-      for(let n=0;n<strands;n++) {ribbon(lane,(n-strands/2)*(compact?7:9));ctx.stroke();}
+  const backdrop=document.querySelector('.page-atmosphere');
+  const svg=backdrop?.querySelector('.journey-background');
+  if(!svg)return;
+  const ns='http://www.w3.org/2000/svg';
+  const wash=svg.querySelector('.journey-wash');
+  const ribbon=svg.querySelector('.journey-ribbon');
+  const filaments=svg.querySelector('.journey-filaments');
+  const trace=svg.querySelector('.journey-progress');
+  const landmarks=svg.querySelector('.journey-landmarks');
+  const beacon=svg.querySelector('.journey-beacon');
+  const orbs=[...backdrop.querySelectorAll('.depth-orb')];
+  let height=0,width=0,length=0,frame=0,layoutPending=true,orbPositions=[];
+  function element(tag,attrs){const el=document.createElementNS(ns,tag);Object.entries(attrs).forEach(([key,value])=>el.setAttribute(key,value));return el;}
+  function layout(){
+    width=document.body.clientWidth;height=document.body.offsetHeight;
+    svg.setAttribute('viewBox',`0 0 ${width} ${height}`);
+    const step=Math.max(760,Math.min(1080,innerHeight*1.12));
+    const points=[{x:width*.98,y:-220}];
+    for(let y=step*.72,i=0;y<height+step;y+=step,i++)points.push({x:width*(i%2===0?.08:.92),y});
+    let d=`M${points[0].x},${points[0].y}`;
+    for(let i=1;i<points.length;i++){
+      const a=points[i-1],b=points[i],dy=b.y-a.y;
+      d+=` C${a.x},${a.y+dy*.48} ${b.x},${b.y-dy*.48} ${b.x},${b.y}`;
     }
-    // Small points drift without expensive all-to-all connections.
-    const count=compact?24:48;
-    for(let i=0;i<count;i++) {
-      const phase=i*2.39996;
-      const x=((i*173.31)%997)/997*width+Math.sin(clock*.12+phase)*18;
-      const y=((i*239.71)%991)/991*height+Math.cos(clock*.1+phase)*22;
-      const alpha=.12+(Math.sin(clock*.35+phase)+1)*.055;
-      ctx.fillStyle=`rgba(63,128,218,${alpha})`;
-      ctx.beginPath();ctx.arc(x,y,i%7===0?1.8:1,0,tau);ctx.fill();
-      if(i%9===0) {ctx.strokeStyle=`rgba(74,142,227,${alpha*.6})`;ctx.lineWidth=.7;ctx.beginPath();ctx.moveTo(x-4,y);ctx.lineTo(x+4,y);ctx.moveTo(x,y-4);ctx.lineTo(x,y+4);ctx.stroke();}
-    }
-    for(const ripple of ripples) {
-      const age=clock-ripple.born;
-      for(let i=0;i<2;i++) {
-        const t=(age-i*.2)/2.4;
-        if(t<0||t>1)continue;
-        ctx.strokeStyle=`rgba(76,145,235,${(1-t)*.25})`;ctx.lineWidth=1.2-t*.7;
-        ctx.beginPath();ctx.arc(ripple.x*width,ripple.y*height,12+(1-Math.pow(1-t,3))*160,0,tau);ctx.stroke();
-      }
-    }
+    wash.setAttribute('d',d);ribbon.setAttribute('d',d);trace.setAttribute('d',d);
+    filaments.replaceChildren();
+    const strands=width<760?6:10;
+    for(let i=0;i<strands;i++)filaments.append(element('path',{d,transform:`translate(${(i-(strands-1)/2)*(width<760?11:15)},0)`}));
+    landmarks.replaceChildren();
+    points.slice(1,-1).forEach((p,i)=>{
+      const ring=element('g',{transform:`translate(${p.x},${p.y})`});
+      ring.append(element('circle',{r:width<760?74:112}),element('circle',{r:width<760?88:132,'stroke-dasharray':'2 11'}));
+      ring.append(element('path',{d:'M-12 0H12 M0-12V12'}));landmarks.append(ring);
+    });
+    length=wash.getTotalLength();
+    orbPositions=orbs.map(el=>el.offsetTop+el.offsetHeight/2);
   }
-  function tick(now) {
-    frame=0;
-    if(document.hidden||paused||reduced.matches)return;
-    const interval=compact?42:33;
-    if(!last)last=now-interval;
-    if(now-last>=interval) {
-      const dt=Math.min((now-last)/1000,.08);last=now;clock+=dt;
-      const ease=1-Math.exp(-dt*3);
-      pointer.x+=(pointer.tx-pointer.x)*ease;pointer.y+=(pointer.ty-pointer.y)*ease;
-      progress+=(targetProgress-progress)*ease;
-      ripples=ripples.filter(r=>clock-r.born<2.7);
-      draw();
-    }
-    frame=requestAnimationFrame(tick);
+  function render(){
+    frame=0;if(document.hidden)return;
+    if(layoutPending){layoutPending=false;layout();}
+    const y=Math.min(height,scrollY+innerHeight*.57);
+    // Locate the same vertical point on the curve; the beacon follows reading progress.
+    let low=0,high=length;
+    for(let i=0;i<11;i++){const mid=(low+high)/2;if(wash.getPointAtLength(mid).y<y)low=mid;else high=mid;}
+    const traveled=(low+high)/2;
+    const point=wash.getPointAtLength(traveled);
+    beacon.setAttribute('transform',`translate(${point.x},${point.y})`);
+    trace.style.strokeDashoffset=String(1-traveled/length);
+    orbs.forEach((el,i)=>{const offset=paused||reduced.matches?0:Math.max(-100,Math.min(100,(scrollY+innerHeight/2-orbPositions[i])*.12));el.style.setProperty('--depth-shift',`${offset}px`);});
   }
-  function sync() {
-    cancelAnimationFrame(frame);frame=0;last=0;
-    if(!document.hidden&&!paused&&!reduced.matches)frame=requestAnimationFrame(tick);
-  }
-  addEventListener('resize',()=>{resize();sync();},{passive:true});
-  addEventListener('scroll',()=>{targetProgress=scrollY/Math.max(1,root.scrollHeight-height);},{passive:true});
-  document.addEventListener('pointermove',event=>{
-    if(!finePointer.matches||paused||reduced.matches)return;
-    pointer.tx=event.clientX/width;pointer.ty=event.clientY/height;pointer.active=true;
-  },{passive:true});
-  document.addEventListener('pointerleave',()=>{pointer.active=false;pointer.tx=.72;pointer.ty=.35;});
-  document.addEventListener('pointerdown',event=>{
-    if(paused||reduced.matches||document.hidden)return;
-    ripples.push({x:event.clientX/width,y:event.clientY/height,born:clock});
-    if(ripples.length>4)ripples.shift();
-  },{passive:true});
-  document.addEventListener('visibilitychange',sync);
-  document.addEventListener('portfolio-motion',sync);
-  resize();sync();
+  function schedule(needsLayout=false){layoutPending=layoutPending||needsLayout;if(!frame&&!document.hidden)frame=requestAnimationFrame(render);}
+  addEventListener('scroll',()=>schedule(),{passive:true});
+  addEventListener('resize',()=>schedule(true),{passive:true});
+  document.addEventListener('portfolio-motion',()=>schedule());
+  document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelAnimationFrame(frame);frame=0;}else schedule(true);});
+  if('ResizeObserver' in window)new ResizeObserver(()=>schedule(true)).observe(document.body);
+  schedule(true);
 })();
